@@ -62,7 +62,7 @@ class App {
 
 		const body = window.document.body;
 
-		if (APP.following) {
+		if (this.following) {
 			body.scrollTop = body.scrollHeight;
 		}
 	}
@@ -78,7 +78,7 @@ class App {
 		// Some fudging around because of higher and fractional DPI issues.
 		// On 1.5 DPI chrome, it is possible to get the scroll to bottom
 		// not matching with the total height *some* times.
-		APP.setFollowing(Math.abs(total_height - scroll_bottom) < 5);
+		this.setFollowing(Math.abs(total_height - scroll_bottom) < 5);
 	}
 }
 
