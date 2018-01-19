@@ -1,6 +1,7 @@
 import html from "./lib/html";
 import ready from "./lib/ready";
 import bsod from "./lib/bsod";
+import Listener from "./listener";
 
 /**
  * The logger app.
@@ -10,6 +11,7 @@ class App {
 		this.$app = null;
 		this.$log = null;
 
+		// Only "boot" the app when the DOM is ready.
 		ready(() => this.boot())
 	}
 
@@ -32,6 +34,10 @@ class App {
 
 		// Hooks on scroll
 		window.addEventListener("scroll", () => this.watchScroll())
+
+		// Starts the listener.
+		this.listener = new Listener();
+		this.listener.setFunction((msg) => this.log(msg, "stdout"));
 	}
 
 	setFollowing(following) {
