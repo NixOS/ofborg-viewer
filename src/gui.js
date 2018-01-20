@@ -21,7 +21,7 @@ class Gui {
 		}
 
 		this.$backlog = html(`<div class="backlog logger"></div>`)[0];
-		this.$log = html(`<div class="logger"></div>`)[0];
+		this.$log = html(`<div class="newlog logger"></div>`)[0];
 		// Empties app...
 		this.$app.innerHTML = "";
 
