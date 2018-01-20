@@ -36,8 +36,10 @@ class App {
 		window.addEventListener("scroll", () => this.watchScroll())
 
 		// Starts the listener.
-		this.listener = new Listener();
-		this.listener.setFunction((msg) => this.log(msg, "stdout"));
+		this.listener = new Listener(
+			(...args) => this.log(...args),
+			(msg) => this.log(msg, "stdout")
+		);
 	}
 
 	setFollowing(following) {

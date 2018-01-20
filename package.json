@@ -4,7 +4,9 @@
     "webpack": "^3.10.0"
   },
   "dependencies": {
+    "@stomp/stompjs": "^4.0.0",
     "buble": "^0.18.0",
-    "buble-loader": "^0.4.1"
+    "buble-loader": "^0.4.1",
+    "websocket": "^1.0.25"
   }
 }
