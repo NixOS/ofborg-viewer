@@ -2,55 +2,53 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Log viewer loading...</title>
+		<style>
+			body {
+				margin: 0;
+				padding: 0;
+				font-family:
+					"Go Mono",
+					"DejaVu Sans Mono",
+					"Lucida Console",
+					"monospace"
+					;
+			}
+			.bsod {
+				background: #2D8F34;
+				color: #ffffff;
+				white-space: pre;
+			}
+			.loading > strong {
+				display: block;
+			}
+			.loading > em {
+				color: #666;
+			}
+			.app {
+				margin: 0;
+			}
+			.logger {
+				white-space: pre-wrap;
+			}
+			.logger > * {
+				border-bottom: 0.05em solid #eee;
+				padding-left: 1em;
+			}
+			.logger .ofborg {
+				border-left: 0.5em solid #2D8F34;
+				color: #666;
+				padding-left: 0.5em;
+			}
+			.logger .stomp {
+				border-left: 0.5em solid #8F2D87;
+				color: #666;
+				padding-left: 0.5em;
+			}
+			.logger .stderr {
+				color: #BA3300;
+			}
+		</style>
 	</head>
-<style>
-body {
-	margin: 0;
-	padding: 0;
-	font-family:
-		"Go Mono",
-		"DejaVu Sans Mono",
-		"Lucida Console",
-		"monospace"
-	;
-}
-.bsod {
-	background: #2D8F34;
-	color: #ffffff;
-	white-space: pre;
-}
-.loading > strong {
-	display: block;
-}
-.loading > em {
-	color: #666;
-}
-
-.app {
-	margin: 0;
-}
-
-.logger {
-	white-space: pre-wrap;
-}
-.logger > * {
-	border-bottom: 0.05em solid #eee;
-	padding-left: 1em;
-}
-.logger .ofborg {
-	border-left: 0.5em solid #2D8F34;
-	color: #666;
-	padding-left: 0.5em;
-}
-.logger .stomp {
-	border-left: 0.5em solid #8F2D87;
-	color: #666;
-	padding-left: 0.5em;
-}
-.logger .stderr {
-	color: #BA3300;
-}
-</style>
 	<body>
 		<div id="ofborg-logviewer">
 			<div class="app">
