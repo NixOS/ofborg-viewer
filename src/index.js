@@ -43,6 +43,10 @@ class App {
 			return;
 		}
 
+		if (params["debug"]) {
+			window.DEBUG = true;
+		}
+
 		// Starts the listener.
 		this.listener = new Listener({
 			key: params["key"],

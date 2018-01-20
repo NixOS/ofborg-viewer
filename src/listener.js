@@ -32,7 +32,7 @@ class Listener {
 
 	/**
 	 * Catches stomp.js debug log.
-	 * window.DEBUG can be set to true to help debug issues.
+	 * window.DEBUG can be set (using param debug=true) to help debug issues.
 	 */
 	debug_callback(str) {
 		if (window.DEBUG) {
