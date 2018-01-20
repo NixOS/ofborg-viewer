@@ -7,6 +7,7 @@
     "@stomp/stompjs": "^4.0.0",
     "buble": "^0.18.0",
     "buble-loader": "^0.4.1",
+    "query-string": "^5.0.1",
     "websocket": "^1.0.25"
   }
 }

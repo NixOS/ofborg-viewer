@@ -19,7 +19,9 @@ function toHex(str) {
  * This is while waiting for actual data.
  */
 class Listener {
-	constructor(logger, fn) {
+	constructor({key, logger, fn}) {
+		this.subscription = null;
+		this.key = key;
 		this.fn = fn;
 		this.logger = logger;
 		this.logger("Socket created...", "ofborg")
@@ -56,6 +58,15 @@ class Listener {
 
 	connected() {
 		this.logger("Connected...", "ofborg")
+		this.logger(`Subscribing to "${this.key}"...`, "ofborg")
+		this.subscription = this.client.subscribe(
+			`/exchange/logs/${this.key}`,
+			(m) => this.on_message(JSON.parse(m))
+		);
+	}
+
+	on_message(message) {
+		this.receive(message["output"]);
 	}
 
 	receive(msg) {

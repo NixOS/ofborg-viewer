@@ -1,3 +1,4 @@
+import queryString from "query-string";
 import html from "./lib/html";
 import ready from "./lib/ready";
 import bsod from "./lib/bsod";
@@ -35,11 +36,19 @@ class App {
 		// Hooks on scroll
 		window.addEventListener("scroll", () => this.watchScroll())
 
+		// Loading parameters
+		const params = queryString.parse(location.search);
+		if (!params["key"]) {
+			this.log("!! No key parameter... stopping now.", "ofborg");
+			return;
+		}
+
 		// Starts the listener.
-		this.listener = new Listener(
-			(...args) => this.log(...args),
-			(msg) => this.log(msg, "stdout")
-		);
+		this.listener = new Listener({
+			key: params["key"],
+			logger: (...args) => this.log(...args),
+			fn: (msg) => this.log(msg, "stdout")
+		});
 	}
 
 	setFollowing(following) {
