@@ -4,15 +4,6 @@ import Stomp from "@stomp/stompjs";
 const SOCK = "wss://events.nix.gsc.io:15671/ws"
 const AUTH = "logstream";
 
-function toHex(str) {
-	var hex = '';
-	for(var i=0;i<str.length;i++) {
-		hex += ''+str.charCodeAt(i).toString(16);
-	}
-	return hex;
-}
-
-
 /**
  * "Fake listener interface".
  *
