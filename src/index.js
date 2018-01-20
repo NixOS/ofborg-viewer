@@ -11,6 +11,7 @@ class App {
 	constructor() {
 		this.$app = null;
 		this.$log = null;
+		this.$backlog = null;
 
 		// Only "boot" the app when the DOM is ready.
 		ready(() => this.boot())
@@ -25,11 +26,14 @@ class App {
 			return bsod("Couldn't hook app.");
 		}
 		console.log("Creating log interface....");
+		this.$backlog = html(`<div class="backlog"></div>`)[0];
 		this.$log = html(`<div class="logger"></div>`)[0];
 		this.log("→ logger starting", "ofborg");
 		// Empties app...
 		this.$app.innerHTML = "";
-		// Appends our logging target.
+
+		// Appends the "app parts"
+		this.$app.appendChild(this.$backlog);
 		this.$app.appendChild(this.$log);
 		console.log("... log interface created.")
 		window.document.title = "Log viewer started...";
