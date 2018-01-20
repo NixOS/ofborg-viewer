@@ -57,7 +57,9 @@ class Gui {
 	 */
 	log(text, cls = "") {
 		const el = html(`<div class="${cls}"></div>`)[0];
-		el.innerText = text;
+		// The replace regex allows more intelligent splitting.
+		// It will prefer splitting words, this way.
+		el.innerText = text.replace(/([,-=/])/g, "\u200B$1\u200B");
 		this.$log.appendChild(el);
 
 		const body = window.document.body;
