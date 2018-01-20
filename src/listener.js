@@ -1,7 +1,7 @@
 import bsod from "./lib/bsod";
 import Stomp from "@stomp/stompjs";
 
-const SOCK = "wss://events.nix.gsc.io:15671/ws"
+const SOCK = "wss://events.nix.gsc.io:15671/ws";
 const AUTH = "logstream";
 
 /**
@@ -15,7 +15,7 @@ class Listener {
 		this.key = key;
 		this.fn = fn;
 		this.logger = logger;
-		this.logger("Socket created...", "ofborg")
+		this.logger("Socket created...", "ofborg");
 		this.client = Stomp.client(SOCK);
 		this.client.debug = (str) => this.debug_callback(str);
 		this.connect();
@@ -27,8 +27,10 @@ class Listener {
 	 */
 	debug_callback(str) {
 		if (window.DEBUG) {
+			/* eslint-disable no-control-regex */
 			const cleaned = str.replace(/[\x00\s]+$/g, "").trim();
-			this.logger(cleaned, "stomp")
+			/* eslint-enable */
+			this.logger(cleaned, "stomp");
 		}
 	}
 
@@ -41,22 +43,22 @@ class Listener {
 	}
 
 	disconnect() {
-		this.logger("Disconnecting...", "ofborg")
+		this.logger("Disconnecting...", "ofborg");
 		this.client.disconnect(
 			() => this.logger("Disconnected.", "ofborg")
-		)
+		);
 	}
 
 	connected() {
-		this.logger("Connected...", "ofborg")
-		this.logger(`Subscribing to "${this.key}"...`, "ofborg")
+		this.logger("Connected...", "ofborg");
+		this.logger(`Subscribing to "${this.key}"...`, "ofborg");
 		this.subscription = this.client.subscribe(
 			`/exchange/logs/${this.key}`,
 			(m) => this.on_message(JSON.parse(m.body), m)
 		);
 	}
 
-	on_message(message, raw_message) {
+	on_message(message) {
 		this.receive(message["output"]);
 	}
 

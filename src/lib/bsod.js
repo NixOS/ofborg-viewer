@@ -11,6 +11,6 @@ const bsod = function(msg = "Something happened.") {
 -> ${msg}
 `;
 	body.className = "bsod";
-}
+};
 
 export default bsod;

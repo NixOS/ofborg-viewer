@@ -7,6 +7,6 @@ const ready = function(fn) {
 	} else {
 		document.addEventListener('DOMContentLoaded', fn);
 	}
-}
+};
 
 export default ready;

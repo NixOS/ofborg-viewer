@@ -9,7 +9,7 @@ import Gui from "./gui";
 class App {
 	constructor() {
 		// Only "boot" the app when the DOM is ready.
-		ready(() => this.boot())
+		ready(() => this.boot());
 	}
 
 	/**

@@ -8,7 +8,7 @@ import bsod from "./lib/bsod";
  */
 class Gui {
 	constructor() {
-		console.log("Creating log interface....");
+		console.log("Creating log interface...."); // eslint-disable-line
 		this.$app = null;
 		this.$log = null;
 		this.$backlog = null;
@@ -30,8 +30,8 @@ class Gui {
 		this.$app.appendChild(this.$log);
 
 		// Hooks on scroll
-		window.addEventListener("scroll", () => this.watchScroll())
-		console.log("... log interface created.")
+		window.addEventListener("scroll", () => this.watchScroll());
+		console.log("... log interface created."); // eslint-disable-line
 	}
 
 	setFollowing(following) {
