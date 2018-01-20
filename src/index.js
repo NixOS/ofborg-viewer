@@ -32,6 +32,7 @@ class App {
 		// Appends our logging target.
 		this.$app.appendChild(this.$log);
 		console.log("... log interface created.")
+		window.document.title = "Log viewer started...";
 
 		// Hooks on scroll
 		window.addEventListener("scroll", () => this.watchScroll())
@@ -46,6 +47,8 @@ class App {
 		if (params["debug"]) {
 			window.DEBUG = true;
 		}
+
+		window.document.title = `Log viewer [${params["key"]}]`;
 
 		// Starts the listener.
 		this.listener = new Listener({
