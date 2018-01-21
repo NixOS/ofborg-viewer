@@ -53,7 +53,7 @@ class Listener {
 		this.logger("Connected...", "ofborg");
 		this.logger(`Subscribing to "${this.key}"...`, "ofborg");
 		this.subscription = this.client.subscribe(
-			`/exchange/logs/${this.key}`,
+			`/exchange/logs/${encodeURIComponent(this.key)}`,
 			(m) => this.on_message(JSON.parse(m.body), m)
 		);
 	}
