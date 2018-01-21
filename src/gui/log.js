@@ -26,7 +26,7 @@ class Log {
 		const label = this.$tab.querySelectorAll("label > span")[0];
 		label.innerText = name;
 		radio.value = name;
-		radio.onclick = (e) => {
+		radio.onclick = () => {
 			this.select();
 		};
 
