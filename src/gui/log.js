@@ -29,6 +29,13 @@ class Log {
 		radio.onclick = (e) => {
 			this.select();
 		};
+
+		radio.onfocus = () => {
+			this.$tab.classList.add("__focus");
+		}
+		radio.onblur = () => {
+			this.$tab.classList.remove("__focus");
+		}
 	}
 
 	/**

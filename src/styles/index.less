@@ -101,7 +101,9 @@ body {
 		display: block;
 		color: inherit;
 		text-decoration: inherit;
-		&:focus {
+	}
+	li {
+		&:focus, &.__focus {
 			color: @color_header_selected;
 			background-color: @colof_header_focus;
 		}
