@@ -7,6 +7,16 @@
 
 @header_height: 1.3rem;
 
+#no-select {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	cursor: default;
+}
+
 body {
 	color: #000000;
 	background-color: #ffffff;
@@ -85,6 +95,8 @@ body {
 	}
 	li > * {
 		position: relative;
+		#no-select();
+		cursor: pointer;
 
 		// Input is hidden, but through opacity and position.
 		// Otherwise, it won't be keyboard-interactable.
