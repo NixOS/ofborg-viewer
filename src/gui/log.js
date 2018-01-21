@@ -9,7 +9,7 @@ class Log {
 	constructor(name) {
 		this.name = name;
 		this.$node = html(`<div class="logger"></div>`)[0];
-		this.$node.classList.add(`name__${name}`);
+		this.$node.classList.add(`name__${name.replace(/[^a-zA-Z]/g, "_")}`);
 
 		this.$backlog = html(`<div class="backlog logger-log"></div>`)[0];
 		this.$log = html(`<div class="newlog logger-log"></div>`)[0];
