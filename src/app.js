@@ -53,8 +53,12 @@ class App {
 	 *
 	 * This can receive a class for some more styling.
 	 */
-	log(text, cls = "") {
-		this.gui.log(text, cls);
+	log(msg, tag, log) {
+		this.gui.log({
+			msg,
+			tag,
+			log,
+		});
 	}
 }
 
