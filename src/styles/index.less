@@ -1,7 +1,14 @@
 @color_borg: #2D8F34;
 @color_debug: #8F2D87;
+@color_header_bg: #AFFFFF;
+@color_header_fg: #005FFF;
+@color_header_selected: #ffffff;
+
+@header_height: 1.3rem;
 
 body {
+	color: #000000;
+	background-color: #ffffff;
 	margin: 0;
 	padding: 0;
 	font-family:
@@ -29,6 +36,46 @@ body {
 
 .app {
 	margin: 0;
+}
+
+.app > header {
+	background: @color_header_bg;
+	color: @color_header_fg;
+	height: @header_height;
+	line-height: @header_height;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+
+	ul, ul > li {
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+	}
+
+	ul > li {
+		display: inline-block;
+		padding-left:  0.5em;
+		padding-right: 0.5em;
+	}
+	li > a {
+		color: inherit;
+		text-decoration: inherit;
+	}
+
+	.selected {
+		color: @color_header_selected;
+		background-color: @color_header_fg;
+	}
+}
+
+.app > .logs {
+	margin-top: @header_height;
+
+	& > :not(.selected) {
+		display: none;
+	}
 }
 
 // A logger pane.

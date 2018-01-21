@@ -19,6 +19,15 @@ class Log {
 		// Appends the "app parts"
 		this.$node.appendChild(this.$backlog);
 		this.$node.appendChild(this.$log);
+
+		// The tab used for navigation.
+		this.$tab = html(`<li><a href="#"></a></li>`)[0];
+		const a = this.$tab.children[0];
+		a.innerText = name;
+		a.onclick = (e) => {
+			e.preventDefault();
+			this.select();
+		};
 	}
 
 	/**
@@ -38,6 +47,22 @@ class Log {
 		// line breaks.
 		el.innerText = text;
 		this.$log.appendChild(el);
+	}
+
+	select() {
+		this.$node.classList.add("selected");
+		this.$tab.classList.add("selected");
+		if (this.on_select) {
+			this.on_select(this);
+		}
+	}
+
+	unselect() {
+		this.$node.classList.remove("selected");
+		this.$tab.classList.remove("selected");
+		if (this.on_unselect) {
+			this.on_unselect();
+		}
 	}
 }
 

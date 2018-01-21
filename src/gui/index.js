@@ -33,6 +33,11 @@ class Gui {
 		// Empties app...
 		this.$app.innerHTML = "";
 
+		this.$header = html(`<header></header>`)[0];
+		this.$nav = html(`<ul></ul>`)[0];
+		this.$header.appendChild(this.$nav);
+		this.$app.appendChild(this.$header);
+
 		// Logs DOM instance holder.
 		this.$logs = html(`<div class="logs"></div>`)[0];
 		this.$app.appendChild(this.$logs);
@@ -48,6 +53,23 @@ class Gui {
 		const log = new Log(name);
 		this.logs[name] = log;
 		this.$logs.appendChild(log.$node);
+
+		this.$nav.appendChild(log.$tab);
+
+		if (Object.keys(this.logs).length === 1) {
+			log.select();
+		}
+
+		log.on_select = (...args) => this.onSelect(...args);
+	}
+
+	onSelect(selected) {
+		this.maybeScroll();
+		Object.values(this.logs).map((l) => {
+			if (selected !== l) {
+				l.unselect()
+			}
+		});
 	}
 
 	setFollowing(following) {
@@ -104,8 +126,11 @@ class Gui {
 			return;
 		}
 		this.logs[log].log(msg, tag);
+		this.maybeScroll();
+	}
 
-		// Scroll as needed.
+	// Scroll as needed.
+	maybeScroll() {
 		const body = window.document.body;
 		if (this.following) {
 			body.scrollTop = body.scrollHeight;
