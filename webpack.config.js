@@ -30,6 +30,7 @@ module.exports = {
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
+			hash: true,
 			template: "src/app.html",
 		})
 	]
