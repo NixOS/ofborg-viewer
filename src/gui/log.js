@@ -21,11 +21,12 @@ class Log {
 		this.$node.appendChild(this.$log);
 
 		// The tab used for navigation.
-		this.$tab = html(`<li><a href="#"></a></li>`)[0];
-		const a = this.$tab.children[0];
-		a.innerText = name;
-		a.onclick = (e) => {
-			e.preventDefault();
+		this.$tab = html(`<li><label><input type="radio" name="selected_tab"><span></span></label></li>`)[0];
+		const radio = this.$tab.querySelectorAll("input")[0];
+		const label = this.$tab.querySelectorAll("label > span")[0];
+		label.innerText = name;
+		radio.value = name;
+		radio.onclick = (e) => {
 			this.select();
 		};
 	}

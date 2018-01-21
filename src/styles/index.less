@@ -83,7 +83,19 @@ body {
 	ul > li {
 		display: inline-block;
 	}
-	li > a {
+	li > * {
+		position: relative;
+
+		// Input is hidden, but through opacity and position.
+		// Otherwise, it won't be keyboard-interactable.
+		input {
+			opacity: 0;
+			height: 1px;
+			width: 1px;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
 		padding-left:  0.5em;
 		padding-right: 0.5em;
 		display: block;
