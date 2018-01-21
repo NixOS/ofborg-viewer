@@ -18,7 +18,14 @@ module.exports = {
 				query: {
 					objectAssign: "Object.assign"
 				}
-			}
+			},
+			{
+				test: /\.less$/,
+				use: [
+					{loader: "raw-loader"},
+					{loader: "less-loader"},
+				]
+			},
 		]
 	},
 	plugins: [
