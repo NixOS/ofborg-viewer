@@ -44,7 +44,7 @@ class App {
 		this.listener = new Listener({
 			key: params["key"],
 			logger: (...args) => this.log(...args),
-			fn: (msg) => this.log(msg, "stdout")
+			fn: ({output, attempt_id}) => this.log(output, "stdout", attempt_id)
 		});
 	}
 
@@ -54,6 +54,9 @@ class App {
 	 * This can receive a class for some more styling.
 	 */
 	log(msg, tag, log) {
+		if (log && Object.keys(this.gui.logs).indexOf(log) === -1) {
+			this.gui.addLog(log);
+		}
 		this.gui.log({
 			msg,
 			tag,

@@ -58,13 +58,16 @@ class Listener {
 		);
 	}
 
-	on_message(message) {
-		this.receive(message["output"]);
+	/**
+	 * Handler for messages.
+	 */
+	on_message(msg) {
+		this.receive(msg);
 	}
 
-	receive(msg) {
+	receive(...args) {
 		if (this.fn) {
-			return this.fn(msg);
+			return this.fn(...args);
 		}
 	}
 }
