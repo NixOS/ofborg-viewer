@@ -1,48 +1,76 @@
+@color_borg: #2D8F34;
+@color_debug: #8F2D87;
+
 body {
 	margin: 0;
 	padding: 0;
 	font-family:
-	"Go Mono",
-	"DejaVu Sans Mono",
-	"Lucida Console",
-	"monospace"
+		"Go Mono",
+		"DejaVu Sans Mono",
+		"Lucida Console",
+		"monospace"
 	;
 }
+
 .bsod {
-	background: #2D8F34;
+	background: @color_borg;
 	color: #ffffff;
 	white-space: pre;
 }
-.loading > strong {
-	display: block;
+
+.loading {
+	strong {
+		display: block;
+	}
+	em {
+		color: #666;
+	}
 }
-.loading > em {
-	color: #666;
-}
+
 .app {
 	margin: 0;
 }
+
+// A logger pane.
 .logger-log {
+	@left_border: 1em;
+
+	// Makes it mostly behave like pre.
+	// But with more wrapping.
 	white-space: pre-wrap;
 	word-wrap: break-word;
-}
-.newlog {
-	padding-bottom: 0.7em;
-}
-.logger-log > * {
-	border-bottom: 0.05em solid #eee;
-	padding-left: 1em;
-}
-.logger-log .ofborg {
-	border-left: 0.5em solid #2D8F34;
-	color: #666;
-	padding-left: 0.5em;
-}
-.logger-log .stomp {
-	border-left: 0.5em solid #8F2D87;
-	color: #666;
-	padding-left: 0.5em;
-}
-.logger-log .stderr {
-	color: #BA3300;
+
+	// All lines.
+	& > * {
+		border-bottom: 0.05em solid #eee;
+		padding-left: @left_border;
+	}
+
+	// Specially tagged messages.
+	.ofborg, .stomp {
+		border-left: @left_border/2 solid transparent;
+		padding-left: @left_border/2;
+		color: #666;
+	}
+
+	// And their (tagged) colors.
+	.ofborg {
+		border-left-color: @color_borg;
+	}
+	.stomp {
+		border-left-color: @color_debug;
+	}
+	.stderr {
+		color: #BA3300;
+	}
+
+	// The previous bits of logs.
+	&.backlog {
+	}
+
+	// The "live" part of the logs.
+	&.newlog {
+		// Adds sensible spacing at the bottom of the screen.
+		padding-bottom: 0.7em;
+	}
 }
