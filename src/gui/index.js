@@ -65,10 +65,13 @@ class Gui {
 
 	onSelect(selected) {
 		this.maybeScroll();
+		// Uses map as a cheap foreach.
 		Object.values(this.logs).map((l) => {
 			if (selected !== l) {
-				l.unselect()
+				l.unselect();
 			}
+
+			return null;
 		});
 	}
 

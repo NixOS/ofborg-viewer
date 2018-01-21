@@ -32,10 +32,10 @@ class Log {
 
 		radio.onfocus = () => {
 			this.$tab.classList.add("__focus");
-		}
+		};
 		radio.onblur = () => {
 			this.$tab.classList.remove("__focus");
-		}
+		};
 	}
 
 	/**
