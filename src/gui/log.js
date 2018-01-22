@@ -43,10 +43,13 @@ class Log {
 	 *
 	 * This can receive a class for some more styling.
 	 */
-	log(text, tag) {
+	log(text, tag, {title}) {
 		const el = html(`<div></div>`)[0];
 		if (tag) {
 			el.classList.add(tag);
+		}
+		if (title) {
+			el.title = title;
 		}
 		// The replace regex allows more intelligent splitting.
 		// It will prefer splitting words, this way.
