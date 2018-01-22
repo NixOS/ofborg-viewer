@@ -5,9 +5,7 @@ const SOCK = "wss://events.nix.gsc.io:15671/ws";
 const AUTH = "logstream";
 
 /**
- * "Fake listener interface".
- *
- * This is while waiting for actual data.
+ * Listener interface; subscribes to the queue and uses the given callback.
  */
 class Listener {
 	constructor({key, logger, fn}) {
