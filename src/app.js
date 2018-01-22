@@ -23,7 +23,7 @@ class App {
 	boot() {
 		window.document.title = "Log viewer starting...";
 		this.gui = new Gui();
-		this.log("→ logger starting", "ofborg");
+		this.log("→ logger starting", null, {tag: "ofborg"});
 		window.document.title = "Log viewer started...";
 
 		// Loading parameters
@@ -43,8 +43,21 @@ class App {
 		// Starts the listener.
 		this.listener = new Listener({
 			key: params["key"],
-			logger: (...args) => this.log(...args),
-			fn: ({output, attempt_id}) => this.log(output, "stdout", attempt_id)
+			logger: (msg) => this.log(msg, null, {tag: "ofborg"}),
+			fn: (msg) => this.from_listener(msg),
+		});
+	}
+
+	from_listener(message) {
+		const {output, attempt_id, line_number} = message;
+
+		if (Object.keys(this.gui.logs).indexOf(attempt_id) === -1) {
+			const log = this.gui.addLog(attempt_id);
+		}
+
+		return this.log(output, attempt_id, {
+			tag: "stdout",
+			title: `#${line_number}`,
 		});
 	}
 
@@ -53,14 +66,12 @@ class App {
 	 *
 	 * This can receive a class for some more styling.
 	 */
-	log(msg, tag, log) {
-		if (log && Object.keys(this.gui.logs).indexOf(log) === -1) {
-			this.gui.addLog(log);
-		}
+	log(msg, log, {tag, title} = {}) {
 		this.gui.log({
 			msg,
-			tag,
 			log,
+			tag,
+			title,
 		});
 	}
 }

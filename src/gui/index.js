@@ -108,14 +108,16 @@ class Gui {
 	/**
 	 * Logs the message `msg`, tagged with tag `tag` in log instance `log`.
 	 */
-	log({msg, tag, log = INTERNAL_LOG}) {
+	log({msg, tag, log, title}) {
+		// `null` logs to internal log.
+		const used_log = log || INTERNAL_LOG;
 		// Can't find a log?
-		if (!this.logs[log]) {
+		if (!this.logs[used_log]) {
 			// Warn in the console
 			console.warn(`Couldn't find log "${log}"...`); // eslint-disable-line
 
 			// Makes sure we aren't missing the system log...
-			if (log === INTERNAL_LOG) {
+			if (used_log === INTERNAL_LOG) {
 				bsod(`Log "${INTERNAL_LOG}" log. This shouldn't have happened.`);
 			}
 
@@ -123,12 +125,13 @@ class Gui {
 			this.log({
 				msg,
 				tag,
-				log: INTERNAL_LOG
+				log: INTERNAL_LOG,
+				title,
 			});
 
 			return;
 		}
-		this.logs[log].log(msg, tag);
+		this.logs[used_log].log(msg, tag, {title});
 		this.maybeScroll();
 	}
 
