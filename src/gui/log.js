@@ -82,10 +82,11 @@ class Log {
 		this.$backlog.innerText = "";
 		let line_no = 1;
 		lines.forEach((text) => {
-			const el = html(`<div title="#${line_no++}"></div>`)[0];
+			const el = html(`<div title="#${line_no}"></div>`)[0];
+			line_no += 1;
 			el.innerText = text;
 			this.$backlog.appendChild(el);
-		})
+		});
 		if (this.on_backlog) {
 			this.on_backlog();
 		}
