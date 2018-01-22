@@ -75,6 +75,30 @@ class Log {
 			this.on_unselect();
 		}
 	}
+
+	backlog(lines) {
+		this.$backlog.classList.remove("loading");
+		// Empties backlog...
+		this.$backlog.innerText = "";
+		let line_no = 1;
+		lines.forEach((text) => {
+			const el = html(`<div title="#${line_no++}"></div>`)[0];
+			el.innerText = text;
+			this.$backlog.appendChild(el);
+		})
+		if (this.on_backlog) {
+			this.on_backlog();
+		}
+	}
+
+	backlog_error(err) {
+		this.$backlog.classList.remove("loading");
+		this.$backlog.innerText = `An error happened fetching the backlog...\n${err}`;
+	}
+
+	backlog_loading() {
+		this.$backlog.classList.add("loading");
+	}
 }
 
 export default Log;

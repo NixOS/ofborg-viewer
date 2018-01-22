@@ -61,6 +61,9 @@ class Gui {
 		}
 
 		log.on_select = (...args) => this.onSelect(...args);
+		log.on_backlog = () => this.maybeScroll();
+
+		return log;
 	}
 
 	onSelect(selected) {
