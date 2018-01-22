@@ -52,6 +52,11 @@ class App {
 	from_listener(message) {
 		const {output, attempt_id, line_number} = message;
 
+		// Probably a build-start message.
+		if (!output) {
+			return;
+		}
+
 		if (Object.keys(this.gui.logs).indexOf(attempt_id) === -1) {
 			const log = this.gui.addLog(attempt_id);
 
