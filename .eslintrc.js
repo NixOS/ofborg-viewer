@@ -53,7 +53,7 @@ module.exports = {
         "consistent-this": "error",
         "curly": "error",
         "default-case": "error",
-        "dot-location": "error",
+        "dot-location": "off",
         "dot-notation": "off",
         "eol-last": "error",
         "eqeqeq": "error",
@@ -203,7 +203,7 @@ module.exports = {
         "no-useless-return": "error",
         "no-var": "off",
         "no-void": "error",
-        "no-warning-comments": "error",
+        "no-warning-comments": "warn",
         "no-whitespace-before-property": "error",
         "no-with": "error",
         "nonblock-statement-body-position": "error",
@@ -249,10 +249,7 @@ module.exports = {
                 "before": false
             }
         ],
-        "semi-style": [
-            "error",
-            "last"
-        ],
+        "semi-style": "off",
         "sort-imports": "off",
         "sort-keys": "off",
         "sort-vars": "error",
