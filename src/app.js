@@ -44,7 +44,7 @@ class App {
 		// Starts the listener.
 		this.listener = new Listener({
 			key: params["key"],
-			logger: (msg) => this.log(msg, null, {tag: "ofborg"}),
+			logger: (msg) => this.log(msg, null, {tag: "stomp"}),
 			fn: (msg) => this.from_listener(msg),
 		});
 	}
