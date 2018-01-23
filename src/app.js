@@ -34,6 +34,8 @@ class App {
 			return;
 		}
 
+		this.key = params["key"];
+
 		// This will allow some app parts to log more information.
 		if (params["debug"]) {
 			window.DEBUG = true;
@@ -64,15 +66,15 @@ class App {
 			if (line_number > 1) {
 				// FIXME : Loop backlog fetching until all lines are found up to line_number.
 				log.backlog_loading();
-				// 	Backlog.get(attempt_id)
-				// 		.then((txt) => {
-				// 			const lines = txt.split("\n").slice(0, line_number - 1);
-				// 			log.backlog(lines);
-				// 		})
-				// 		.catch((err) => {
-				// 			log.backlog_error(err);
-				// 		})
-				//	;
+				Backlog.get(this.key, attempt_id)
+					.then((txt) => {
+						const lines = txt.split("\n").slice(0, line_number - 1);
+						log.backlog(lines);
+					})
+					.catch((err) => {
+						log.backlog_error(err);
+					})
+				;
 			}
 		}
 

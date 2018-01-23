@@ -1,10 +1,10 @@
-//const WELL_KNOWN = "http://localhost:1234";
+const WELL_KNOWN = "https://logs.nix.gsc.io/logs";
 
 class Backlog {
-	static get(id) {
-		// return fetch(`${WELL_KNOWN}/${id}`, {mode: "cors"})
-		// 	.then((response) => response.text())
-		// ;
+	static get(routing, id) {
+		return fetch(`${WELL_KNOWN}/${routing}/${id}`, {mode: "cors"})
+			.then((response) => response.text())
+		;
 	}
 }
 
