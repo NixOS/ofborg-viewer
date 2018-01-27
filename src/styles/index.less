@@ -1,6 +1,7 @@
 @color_borg: #2D8F34;
 @color_debug: #8F2D87;
 @color_header_bg: #AFFFFF;
+@color_man: #424775;
 @color_header_fg: #005FFF;
 @color_header_selected: #ffffff;
 @colof_header_focus: #DC00B8;
@@ -151,7 +152,7 @@ body {
 	}
 
 	// Specially tagged messages.
-	.ofborg, .stomp {
+	.ofborg, .stomp, .man {
 		border-left: @left_border/2 solid transparent;
 		padding-left: @left_border/2;
 		color: #666;
@@ -166,6 +167,9 @@ body {
 	}
 	.stderr {
 		color: #BA3300;
+	}
+	.man {
+		border-left-color: @color_man;
 	}
 
 	// The previous bits of logs.

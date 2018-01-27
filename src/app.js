@@ -7,6 +7,25 @@ import Backlog from "./backlog";
 // FIXME : build configuration?
 const WELL_KNOWN = "https://logs.nix.gsc.io/logs";
 
+const MAN = `
+ofborg-viewer(web)            ofborg web interface           ofborg-viewer(web)
+
+NAME
+    ofborg-viewer — Build logs web interface
+
+DESCRIPTION
+    ofborg-viewer is a web interface that aggregates  the currently in-progress
+    build logs made by ofborg.
+
+    New logs for the given build will  be added to  the discovered logs  at the
+    top if the interface. Clicking them or activating them through the keyboard
+    shortcuts of your browser will show them.
+
+    The log will autscroll when the logger interface is scrolled at the bottom.
+    Scrolling up will stop the autoscroll until scrolled back down.
+
+`;
+
 /**
  * The logger app.
  */
@@ -27,6 +46,10 @@ class App {
 	boot() {
 		window.document.title = "Log viewer starting...";
 		this.gui = new Gui();
+
+		this.log("$ man ofborg-viewer", null, {tag: "ofborg"});
+		this.log(MAN, null, {tag: "man"});
+
 		this.log("→ logger starting", null, {tag: "ofborg"});
 		window.document.title = "Log viewer started...";
 
