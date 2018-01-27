@@ -80,6 +80,7 @@ class Log {
 	select() {
 		this.$node.classList.add("selected");
 		this.$tab.classList.add("selected");
+		this.$tab.querySelectorAll("input")[0].checked = true;
 		if (this.on_select) {
 			this.on_select(this);
 		}
