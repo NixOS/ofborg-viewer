@@ -1,4 +1,9 @@
 {
+  "name": "ofborg-viewer-web",
+  "version": "0.0.1",
+  "scripts": {
+    "preinstall": "webpack -p --output-path website"
+  },
   "devDependencies": {
     "buble": "^0.18.0",
     "buble-loader": "^0.4.1",

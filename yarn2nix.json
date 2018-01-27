@@ -1,0 +1,7 @@
+{
+  "url": "https://github.com/moretea/yarn2nix.git",
+  "rev": "d6e05a521bd92b2647bb7e853363d234f21b2cfd",
+  "date": "2017-12-28T22:35:38+00:00",
+  "sha256": "1nvpii9p41vrb6zvr8rqcvmycrl6lnzzaif85qj1aavizncgb4wy",
+  "fetchSubmodules": true
+}
