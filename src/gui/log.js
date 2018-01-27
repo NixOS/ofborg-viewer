@@ -9,7 +9,7 @@ class Log {
 	constructor(name, {label = null} = {}) {
 		this.name = name;
 		this.$node = html(`<div class="logger"></div>`)[0];
-		this.$node.classList.add(`name__${name.replace(/[^a-zA-Z]/g, "_")}`);
+		this.$node.classList.add(`name__${name.replace(/[^a-zA-Z0-9]/g, "_")}`);
 
 		let label_text = label;
 
