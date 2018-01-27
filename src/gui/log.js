@@ -6,10 +6,16 @@ import html from "../lib/html";
  * It presents a (1) node that should be added by the owner to the DOM.
  */
 class Log {
-	constructor(name) {
+	constructor(name, {label = null} = {}) {
 		this.name = name;
 		this.$node = html(`<div class="logger"></div>`)[0];
 		this.$node.classList.add(`name__${name.replace(/[^a-zA-Z]/g, "_")}`);
+
+		let label_text = label;
+
+		if (!label_text) {
+			label_text = name.split("-").splice(0, 2).join("-");
+		}
 
 		this.$backlog = html(`<div class="backlog logger-log"></div>`)[0];
 		this.$log = html(`<div class="newlog logger-log"></div>`)[0];
@@ -23,8 +29,8 @@ class Log {
 		// The tab used for navigation.
 		this.$tab = html(`<li><label><input type="radio" name="selected_tab"><span></span></label></li>`)[0];
 		const radio = this.$tab.querySelectorAll("input")[0];
-		const label = this.$tab.querySelectorAll("label > span")[0];
-		label.innerText = name;
+		const $label = this.$tab.querySelectorAll("label > span")[0];
+		$label.innerText = label_text;
 		radio.value = name;
 		radio.onclick = () => {
 			this.select();
