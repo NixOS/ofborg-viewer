@@ -1,13 +1,7 @@
-Work-in-progress
-================
+`ofborg-viewer`
+===============
 
-This is a work-in-progress logs watcher.
-
-It can't do much right now.
-
-The plan is to integrate it with web-stomp and listen to logs.
-
-The goal is to make this as clean and dependency-free as possible.
+An as-light-as possible viewer for ofborg build logs.
 
 Development use
 ---------------
@@ -35,4 +29,5 @@ Peculiarities
 This uses the DOM directly and no fancy virtual dom thing, this anyway
 is an append-mostly type thing.
 
-This doesn't use libraries for the simple stuff.
+This uses as few libraries as possible (and sane). Modern JS with ES6
+makes it possible to write lean code when targetting modern browsers.
