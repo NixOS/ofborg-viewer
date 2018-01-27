@@ -18,11 +18,11 @@ DESCRIPTION
     build logs made by ofborg.
 
     New logs for the given build will  be added to  the discovered logs  at the
-    top if the interface. Clicking them or activating them through the keyboard
+    top of the interface. Clicking them or activating them through the keyboard
     shortcuts of your browser will show them.
 
-    The log will autscroll when the logger interface is scrolled at the bottom.
-    Scrolling up will stop the autoscroll until scrolled back down.
+    The  log will  autoscroll  when  the logger  interface  is scrolled  at the
+    bottom. Scrolling up will stop the autoscroll until scrolled back down.
 
 `;
 
