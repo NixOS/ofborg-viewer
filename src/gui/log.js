@@ -13,8 +13,19 @@ class Log {
 
 		let label_text = label;
 
+		// Makes a default label...
 		if (!label_text) {
-			label_text = name.split("-").splice(0, 2).join("-");
+			label_text = name;
+
+			// For UUID-like labels
+			// The chances of hitting both conditions on a custom-made string is
+			// quite low.
+			if (label_text.length === 36 && label_text.split("-").length === 5) {
+				label_text = name
+					.split("-")
+					.splice(0, 2)
+					.join("-");
+			}
 		}
 
 		this.$backlog = html(`<div class="backlog logger-log"></div>`)[0];
