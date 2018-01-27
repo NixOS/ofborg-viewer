@@ -59,10 +59,16 @@ class Listener {
 	/**
 	 * Handler for messages.
 	 */
-	on_message(msg) {
-		this.receive(msg);
+	on_message(msg, raw) {
+		// Get the routing key, which will be used to fetch the backlogs.
+		const destination = raw.headers["destination"].split("/");
+		const routing = decodeURIComponent(destination[destination.length - 1]);
+		this.receive(msg, routing);
 	}
 
+	/**
+	 * Conditionally calls the callback registered.
+	 */
 	receive(...args) {
 		if (this.fn) {
 			return this.fn(...args);

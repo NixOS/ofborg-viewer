@@ -47,11 +47,11 @@ class App {
 		this.listener = new Listener({
 			key: params["key"],
 			logger: (msg, tag) => this.log(msg, null, {tag}),
-			fn: (msg) => this.from_listener(msg),
+			fn: (...msg) => this.from_listener(...msg),
 		});
 	}
 
-	from_listener(message) {
+	from_listener(message, routing_key) {
 		const {output, attempt_id, line_number} = message;
 
 		// Probably a build-start message.
@@ -59,6 +59,7 @@ class App {
 			return;
 		}
 
+		// Opening a new log?
 		if (Object.keys(this.gui.logs).indexOf(attempt_id) === -1) {
 			const log = this.gui.addLog(attempt_id);
 
@@ -66,7 +67,7 @@ class App {
 			if (line_number > 1) {
 				// FIXME : Loop backlog fetching until all lines are found up to line_number.
 				log.backlog_loading();
-				Backlog.get(this.key, attempt_id)
+				Backlog.get(routing_key, attempt_id)
 					.then((txt) => {
 						const lines = txt.split("\n").slice(0, line_number - 1);
 						log.backlog(lines);
