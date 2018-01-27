@@ -1,10 +1,11 @@
 @color_borg: #2D8F34;
 @color_debug: #8F2D87;
-@color_header_bg: #AFFFFF;
 @color_man: #424775;
+@color_header_bg: #eeeeee;
 @color_header_fg: #005FFF;
-@color_header_selected: #ffffff;
-@colof_header_focus: #DC00B8;
+@color_tab_bg: #AFFFFF;
+@color_tab_selected: #ffffff;
+@color_tab_focus: #DC00B8;
 
 @header_height: 1.3rem;
 
@@ -93,6 +94,8 @@ body {
 
 	ul > li {
 		display: inline-block;
+		background-color: @color_tab_bg;
+		margin-right: 1em;
 	}
 	li > * {
 		position: relative;
@@ -117,13 +120,13 @@ body {
 	}
 	li {
 		&:focus, &.__focus {
-			color: @color_header_selected;
-			background-color: @colof_header_focus;
+			color: @color_tab_selected;
+			background-color: @color_tab_focus;
 		}
 	}
 
 	.selected {
-		color: @color_header_selected;
+		color: @color_tab_selected;
 		background-color: @color_header_fg;
 	}
 }
