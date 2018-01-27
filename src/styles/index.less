@@ -1,6 +1,7 @@
 @color_borg: #2D8F34;
 @color_debug: #8F2D87;
 @color_man: #424775;
+@color_man_bg: #EDF3FF;
 @color_header_bg: #eeeeee;
 @color_header_fg: #005FFF;
 @color_tab_bg: #AFFFFF;
@@ -158,7 +159,9 @@ body {
 	.ofborg, .stomp, .man {
 		border-left: @left_border/2 solid transparent;
 		padding-left: @left_border/2;
-		color: #666;
+	}
+	.ofborg, .stomp {
+		color: #888;
 	}
 
 	// And their (tagged) colors.
@@ -173,6 +176,7 @@ body {
 	}
 	.man {
 		border-left-color: @color_man;
+		background-color: @color_man_bg;
 	}
 
 	// The previous bits of logs.
