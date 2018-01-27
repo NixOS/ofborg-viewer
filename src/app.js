@@ -4,6 +4,9 @@ import Listener from "./listener";
 import Gui from "./gui";
 import Backlog from "./backlog";
 
+// FIXME : build configuration?
+const WELL_KNOWN = "https://logs.nix.gsc.io/logs";
+
 /**
  * The logger app.
  */
@@ -49,6 +52,31 @@ class App {
 			logger: (msg, tag) => this.log(msg, null, {tag}),
 			fn: (...msg) => this.from_listener(...msg),
 		});
+
+		// Pings the logger API for existing logs.
+		// Those logs can be either live or complete.
+		this.load_logs();
+	}
+
+	load_logs() {
+		this.log(`→ fetching existing attempts for ${this.key}`, null, {tag: "ofborg"});
+		return fetch(`${WELL_KNOWN}/${this.key}`, {mode: "cors"})
+			.then((response) => response.json())
+			.then(({attempts}) => Object.keys(attempts).forEach((attempt_id) => {
+				this.log(`→ fetching log for ${attempt_id}`, null, {tag: "ofborg"});
+				const log = this.gui.addLog(attempt_id);
+				const attempt = attempts[attempt_id];
+				const {log_url} = attempt;
+				fetch(log_url, {mode: "cors"})
+					.then((response) => response.text())
+					.then((txt) => {
+						const lines = txt.split("\n");
+						log.backlog(lines);
+						this.log(`→ added log for ${attempt_id}`, null, {tag: "ofborg"});
+					})
+				;
+			}))
+		;
 	}
 
 	from_listener(message, routing_key) {

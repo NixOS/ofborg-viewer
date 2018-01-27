@@ -1,3 +1,4 @@
+// FIXME : build configuration?
 const WELL_KNOWN = "https://logs.nix.gsc.io/logs";
 
 class Backlog {
