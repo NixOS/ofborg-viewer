@@ -36,7 +36,7 @@ class Listener {
 		this.client.connect(
 			AUTH, AUTH,
 			() => this.connected(),
-			() => bsod("Couldn't connect to websocket.")
+			() => bsod("Couldn't connect to websocket.\n\nMake sure content blockers (noscript, µblock) are not blocking websockets.")
 		);
 	}
 
