@@ -1,8 +1,8 @@
-import queryString from "query-string";
 import ready from "./lib/ready";
 import Listener from "./listener";
 import Gui from "./gui";
 import Backlog from "./backlog";
+import State from "./state";
 
 const MAN = `
 ofborg-viewer(web)            ofborg web interface           ofborg-viewer(web)
@@ -44,41 +44,72 @@ class App {
 		window.document.title = "Log viewer starting...";
 		this.gui = new Gui();
 
+		this.gui.on_select = (...args) => this.handle_select(...args);
+
 		this.log("$ man ofborg-viewer", null, {tag: "ofborg"});
 		this.log(MAN, null, {tag: "man"});
 
 		this.log("→ logger starting", null, {tag: "ofborg"});
 		window.document.title = "Log viewer started...";
 
+		this.state = new State();
+		this.state.on_state_change = (s) => this.handle_state_change(s);
+		this.handle_state_change(this.state.params);
+	}
+
+	handle_select(selected) {
+		this.state.set_state({attempt_id: selected["name"]});
+	}
+
+	handle_state_change(new_state) {
+		const {attempt_id, key} = new_state;
+		const {logs} = this.gui;
+
 		// Loading parameters
-		const params = queryString.parse(location.search);
-		if (!params["key"]) {
+		if (!key) {
 			this.log("!! No key parameter... stopping now.", "ofborg");
 			return;
 		}
 
-		this.key = params["key"];
-
 		// This will allow some app parts to log more information.
-		if (params["debug"]) {
+		if (new_state["debug"]) {
 			window.DEBUG = true;
 		}
 
-		window.document.title = `Log viewer [${params["key"]}]`;
+		window.document.title = `Log viewer [${key}]`;
 
-		// Starts the listener.
-		this.listener = new Listener({
-			key: params["key"],
-			logger: (msg, tag) => this.log(msg, null, {tag}),
-			fn: (...msg) => this.from_listener(...msg),
-		});
+		// This is set only once in the lifetime of the app and is expected
+		// never to change.
+		// FIXME : Allow key to change live.
+		if (!this.key) {
+			this.key = key;
 
-		// Pings the logger API for existing logs.
-		// Those logs can be either live or complete.
-		this.load_logs();
+			// Pings the logger API for existing logs.
+			// Those logs can be either live or complete.
+			this.load_logs(() => {
+				// Selects the log if loaded async.
+				if (logs[attempt_id]) {
+					logs[attempt_id].select();
+				}
+			});
+		}
+
+		// Attempts to select the log.
+		if (logs[attempt_id]) {
+			logs[attempt_id].select();
+		}
+
+		if (!this.listener) {
+			// Starts the listener.
+			this.listener = new Listener({
+				key: new_state["key"],
+				logger: (msg, tag) => this.log(msg, null, {tag}),
+				fn: (...msg) => this.from_listener(...msg),
+			});
+		}
 	}
 
-	load_logs() {
+	load_logs(callback) {
 		this.log(`→ fetching existing attempts for ${this.key}`, null, {tag: "ofborg"});
 		return fetch(`${window.WELL_KNOWN}/${this.key}`, {mode: "cors"})
 			.then((response) => response.json())
@@ -96,6 +127,7 @@ class App {
 					})
 				;
 			}))
+			.then(() => callback())
 		;
 	}
 
