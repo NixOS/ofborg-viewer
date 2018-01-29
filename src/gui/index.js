@@ -60,13 +60,13 @@ class Gui {
 			log.select();
 		}
 
-		log.on_select = (...args) => this.onSelect(...args);
+		log.on_select = (...args) => this.handle_select(...args);
 		log.on_backlog = () => this.maybeScroll();
 
 		return log;
 	}
 
-	onSelect(selected) {
+	handle_select(selected) {
 		this.maybeScroll();
 		// Uses map as a cheap foreach.
 		Object.values(this.logs).map((l) => {
@@ -76,6 +76,10 @@ class Gui {
 
 			return null;
 		});
+
+		if (this.on_select) {
+			this.on_select(selected);
+		}
 	}
 
 	setFollowing(following) {
