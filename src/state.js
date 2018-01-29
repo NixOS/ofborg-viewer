@@ -19,7 +19,6 @@ class State {
 		// Loads from params in URL, then history in order of importance.
 		this.params = Object.assign({}, params, history.state);
 	}
-	}
 
 	set_state(new_state) {
 		const {history} = window;
