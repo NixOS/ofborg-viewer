@@ -1,5 +1,7 @@
 import html from "../lib/html";
 
+const SEP = " ╱ ";
+
 /**
  * The line-oriented GUI for the application.
  *
@@ -36,13 +38,6 @@ class Log {
 		if (metadata) {
 			this.$identity = html(`<div class="identity"></div>`)[0];
 			this.$node.appendChild(this.$identity);
-			const {identity, system} = metadata;
-			const txt = [];
-			txt.push(`id: ${identity}`);
-			txt.push(`system: ${system}`);
-			txt.push(` `);
-			this.$identity.innerText = " " + txt.join(" ╱ ");
-			this.$identity.title = JSON.stringify(metadata, null, "  ");
 		}
 
 		// Appends the "app parts"
@@ -58,6 +53,16 @@ class Log {
 		radio.onclick = () => {
 			this.select();
 		};
+
+		if (metadata) {
+			const {attempt_id, identity, system} = metadata;
+			const txt = [];
+			txt.push(`id: ${identity}`);
+			txt.push(`system: ${system}`);
+			this.$identity.innerText = " " + txt.join(SEP) + SEP;
+			this.$identity.title = JSON.stringify(metadata, null, "  ");
+			$label.title = txt.concat([`attempt_id: ${attempt_id}`]).join(SEP);
+		}
 
 		radio.onfocus = () => {
 			this.$tab.classList.add("__focus");
