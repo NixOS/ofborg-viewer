@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -e
+set -u
+
+this_dir="$(dirname "${BASH_SOURCE[0]}")"
+this_name="${BASH_SOURCE[0]##*/}"
+
+exec "$this_dir/../node_modules/.bin/$this_name" "$@"
