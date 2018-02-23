@@ -13,14 +13,14 @@ Development use
 Or with watcher:
 
 ```
- $ bin/webpack --watch
+ $ bin/webpack-dev-server
 ```
 
 Building (production)
 ---------------------
 
 ```
- $ bin/webpack -p
+ $ nix-build ./release.nix
 ```
 
 Peculiarities
