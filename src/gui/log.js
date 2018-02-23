@@ -42,6 +42,7 @@ class Log {
 			txt.push(`system: ${system}`);
 			txt.push(` `);
 			this.$identity.innerText = " " + txt.join(" ╱ ");
+			this.$identity.title = JSON.stringify(metadata, null, "  ");
 		}
 
 		// Appends the "app parts"
