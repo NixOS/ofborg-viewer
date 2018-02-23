@@ -6,7 +6,7 @@ import html from "../lib/html";
  * It presents a (1) node that should be added by the owner to the DOM.
  */
 class Log {
-	constructor(name, {label = null} = {}) {
+	constructor(name, metadata = null, {label = null} = {}) {
 		this.name = name;
 		this.$node = html(`<div class="logger"></div>`)[0];
 		this.$node.classList.add(`name__${name.replace(/[^a-zA-Z0-9]/g, "_")}`);
@@ -32,6 +32,16 @@ class Log {
 		this.$log = html(`<div class="newlog logger-log"></div>`)[0];
 		// Empties app...
 		this.$node.innerHTML = "";
+
+		if (metadata) {
+			this.$identity = html(`<div class="identity"></div>`)[0];
+			this.$node.appendChild(this.$identity);
+			const {identity, system} = metadata;
+			const txt = [];
+			txt.push(`id: ${identity}`);
+			txt.push(`system: ${system}`);
+			this.$identity.innerText = txt.join(" ");
+		}
 
 		// Appends the "app parts"
 		this.$node.appendChild(this.$backlog);

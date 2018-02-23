@@ -8,7 +8,8 @@
 @color_tab_selected: #ffffff;
 @color_tab_focus: #DC00B8;
 
-@header_height: 1.3rem;
+@line_height: 1.3rem;
+@header_height: @line_height;
 
 #no-select {
 	-webkit-touch-callout: none;
@@ -25,6 +26,7 @@ body {
 	background-color: #ffffff;
 	margin: 0;
 	padding: 0;
+	line-height: @line_height;
 	font-family:
 		"Go Mono",
 		"DejaVu Sans Mono",
@@ -57,6 +59,7 @@ body {
 	color: @color_header_fg;
 	height: @header_height;
 	line-height: @header_height;
+	z-index: 10;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -188,4 +191,14 @@ body {
 		// Adds sensible spacing at the bottom of the screen.
 		padding-bottom: 0.7em;
 	}
+}
+
+.logger .identity {
+	background: #FFFAAF;
+	color: #5270A3;
+	min-height: @line_height;
+	position: sticky;
+	top: @header_height;
+	left: 0;
+	right: 0;
 }

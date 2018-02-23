@@ -49,8 +49,8 @@ class Gui {
 		console.log("... log interface created."); // eslint-disable-line
 	}
 
-	addLog(name) {
-		const log = new Log(name);
+	addLog(name, metadata) {
+		const log = new Log(name, metadata);
 		this.logs[name] = log;
 		this.$logs.appendChild(log.$node);
 

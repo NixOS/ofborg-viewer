@@ -115,8 +115,8 @@ class App {
 			.then((response) => response.json())
 			.then(({attempts}) => Object.keys(attempts).forEach((attempt_id) => {
 				this.log(`→ fetching log for ${attempt_id}`, null, {tag: "ofborg"});
-				const log = this.gui.addLog(attempt_id);
 				const attempt = attempts[attempt_id];
+				const log = this.gui.addLog(attempt_id, attempt["metadata"]);
 				const {log_url} = attempt;
 				fetch(log_url, {mode: "cors"})
 					.then((response) => response.text())
@@ -136,10 +136,12 @@ class App {
 
 		// Probably a build-start message.
 		if (!output) {
+			this.gui.addLog(attempt_id, message);
 			return;
 		}
 
 		// Opening a new log?
+		// It should already have been created, but just in case.
 		if (Object.keys(this.gui.logs).indexOf(attempt_id) === -1) {
 			const log = this.gui.addLog(attempt_id);
 
