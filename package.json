@@ -5,11 +5,11 @@
     "preinstall": "webpack -p --output-path website"
   },
   "devDependencies": {
-    "buble": "^0.18.0",
+    "buble": "^0.19",
     "buble-loader": "^0.4.1",
     "eslint": "^4.16.0",
     "html-webpack-plugin": "^2.30.1",
-    "less": "^2.7.3",
+    "less": "^3.0",
     "less-loader": "^4.0.5",
     "raw-loader": "^0.5.1",
     "uglifyjs-webpack-plugin": "^1.1.6",
