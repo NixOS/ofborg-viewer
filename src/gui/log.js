@@ -40,7 +40,8 @@ class Log {
 			const txt = [];
 			txt.push(`id: ${identity}`);
 			txt.push(`system: ${system}`);
-			this.$identity.innerText = txt.join(" ");
+			txt.push(` `);
+			this.$identity.innerText = " " + txt.join(" ╱ ");
 		}
 
 		// Appends the "app parts"
