@@ -1,9 +1,14 @@
-with import <nixpkgs> {};
+{ pkgs ? import <nixpkgs> {} }:
+with pkgs;
 stdenv.mkDerivation rec {
-	name = "ofborg-logviewer-env";
-	# Makes those dependencies available in the environment.
-	buildInputs = [
-		nodejs-6_x           # Lock to 6.x
-		yarn                 # Much better than npm
-    ];
+  name = "ofborg-logviewer-env";
+  buildInputs = [
+    nodejs-6_x
+    yarn
+  ];
+
+  passthru = {
+    # Allows use of a tarball URL.
+    release = (import ./release.nix {inherit pkgs;});
+  };
 }
