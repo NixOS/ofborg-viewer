@@ -58,9 +58,8 @@ body {
 	background: @color_header_bg;
 	color: @color_header_fg;
 	height: @header_height;
-	line-height: @header_height;
 	z-index: 10;
-	position: fixed;
+	position: sticky;
 	top: 0;
 	left: 0;
 	right: 0;
@@ -136,8 +135,6 @@ body {
 }
 
 .app > .logs {
-	margin-top: @header_height;
-
 	& > :not(.selected) {
 		display: none;
 	}
