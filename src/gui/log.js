@@ -112,14 +112,22 @@ class Log {
 	backlog(lines) {
 		this.$backlog.classList.remove("loading");
 		// Empties backlog...
-		this.$backlog.innerText = "";
+		this.$backlog.innerText = `(Building DOM nodes, ${lines.length} lines long...)`;
 		let line_no = 1;
+		const fragment = document.createDocumentFragment();
 		lines.forEach((text) => {
-			const el = html(`<div title="#${line_no}"></div>`)[0];
+			const el = document.createElement("div");
+			el.title = `#${line_no}`;
 			line_no += 1;
 			el.innerText = text;
-			this.$backlog.appendChild(el);
+			fragment.appendChild(el);
 		});
+		this.$backlog.innerText = `(Appending log to node, ${lines.length} lines long...)`;
+		// Delays appendChild to allow reflow for previous message.
+		window.setTimeout(() => {
+			this.$backlog.innerText = "";
+			this.$backlog.appendChild(fragment);
+		}, 10);
 		this.sendEvent("backlog", this);
 	}
 
@@ -130,6 +138,7 @@ class Log {
 
 	backlog_loading() {
 		this.$backlog.classList.add("loading");
+		this.$backlog.innerText = `Fetching the backlog...`;
 	}
 }
 
