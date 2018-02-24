@@ -144,8 +144,8 @@ class Log {
 				this.$backlog.appendChild($link);
 			}
 			this.$backlog.appendChild(fragment);
+			this.sendEvent("backlog", this);
 		}, 10);
-		this.sendEvent("backlog", this);
 	}
 
 	backlog_error(err) {
