@@ -16,7 +16,12 @@ yarn2nix.mkYarnPackage {
   yarnLock = ./yarn.lock;
   yarnNix = ./yarn.nix;
 
+  preConfigure = ''
+    ${pkgs.gitMinimal}/bin/git rev-parse HEAD > .git-revision
+  '';
+
   postInstall = ''
+    export NODE_ENV=production
     rm -rf website
     yarn run preinstall
     mv website/ $out/website

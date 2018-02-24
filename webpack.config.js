@@ -1,5 +1,7 @@
+const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
+const {get_version, get_revision} = require("./webpack/revision");
 
 module.exports = {
 	entry: "./src/index.js",
@@ -32,6 +34,10 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			hash: true,
 			template: "src/app.html",
-		})
+		}),
+		new webpack.DefinePlugin({
+			"GIT_REVISION": JSON.stringify(get_revision()),
+			"VERSION": JSON.stringify(get_version()),
+		}),
 	]
 };

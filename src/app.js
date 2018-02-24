@@ -50,6 +50,8 @@ class App {
 
 		this.gui.addEventListener("select", this.handle_select);
 
+		this.log("$ ofborg-viewer --version", null, {tag: "ofborg"});
+		this.log(`ofborg-viewer, version ${VERSION} (${GIT_REVISION})`, null, {tag: "ofborg"});
 		this.log("$ man ofborg-viewer", null, {tag: "ofborg"});
 		this.log(MAN, null, {tag: "man"});
 
