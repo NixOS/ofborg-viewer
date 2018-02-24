@@ -9,13 +9,16 @@ let
     inherit (revs) rev sha256;
   })) { inherit pkgs; };
 in
-yarn2nix.mkYarnPackage {
-  name = "ofborg-viewer-web";
+yarn2nix.mkYarnPackage rec {
+  version = (builtins.fromJSON (builtins.readFile ./package.json)).version;
+  name = "ofborg-viewer-web-${version}";
   src = ./.;
   packageJson = ./package.json;
   yarnLock = ./yarn.lock;
   yarnNix = ./yarn.nix;
 
+  # When building from git repo, add the revision to the source.
+  # The build process will use it.
   preConfigure = ''
     if [ -d .git ]; then
       ${pkgs.gitMinimal}/bin/git rev-parse HEAD > .git-revision
