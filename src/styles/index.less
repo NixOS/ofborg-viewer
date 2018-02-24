@@ -156,6 +156,17 @@ body {
 		min-height: @line_height;
 	}
 
+	a {
+		color: @color_header_fg;
+		text-decoration: underline;
+		&:hover, &:focus, &:active {
+			background-color: @color_tab_bg;
+		}
+		&:visited {
+			color: @color_debug;
+		}
+	}
+
 	// Specially tagged messages.
 	.ofborg, .stomp, .man {
 		border-left: @left_border/2 solid transparent;
@@ -189,6 +200,14 @@ body {
 		// Adds sensible spacing at the bottom of the screen.
 		padding-bottom: 0.7em;
 	}
+
+	a.truncated {
+		display: block;
+		animation-name: flash;
+		animation-duration: 0.8s;
+		animation-fill-mode: both;
+		animation-timing-function: ease-in-out;
+	}
 }
 
 .logger .identity {
@@ -199,4 +218,15 @@ body {
 	top: @header_height;
 	left: 0;
 	right: 0;
+}
+
+@keyframes flash {
+	@low: 0.1;
+
+	0%    {opacity: @low;}
+	16.6% {opacity: 1;}
+	33.3% {opacity: @low;}
+	50%   {opacity: 1;}
+	66.6% {opacity: @low;}
+	100%  {opacity: 1;}
 }
