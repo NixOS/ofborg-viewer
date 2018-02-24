@@ -1,0 +1,7 @@
+# No need for all those files.
+default.nix
+package.json
+release.nix
+yarn.lock
+yarn.nix
+yarn2nix.json
