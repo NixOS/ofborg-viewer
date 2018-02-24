@@ -17,7 +17,9 @@ yarn2nix.mkYarnPackage {
   yarnNix = ./yarn.nix;
 
   preConfigure = ''
-    ${pkgs.gitMinimal}/bin/git rev-parse HEAD > .git-revision
+    if [ -d .git ]; then
+      ${pkgs.gitMinimal}/bin/git rev-parse HEAD > .git-revision
+    fi
   '';
 
   postInstall = ''

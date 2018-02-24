@@ -9,12 +9,6 @@ const {NODE_ENV = "development"} = process.env;
 // Makes it available in the environement of the app.
 
 const get_revision = () => {
-	if (NODE_ENV === "development") {
-		return "[development]";
-	}
-
-	let GIT_COMMIT = null;
-
 	// Git revision from deployment.
 	const file = path.resolve("./.git-revision");
 	if (fs.existsSync(file)) {
@@ -23,31 +17,20 @@ const get_revision = () => {
 		return fs.readFileSync(file, {encoding: "utf-8"}).trim();
 	}
 
-	console.error("!!!");
-
-	// Deployment / use from a git repo.
-	if (!GIT_COMMIT || GIT_COMMIT === "") {
-		GIT_COMMIT =`${exec("git rev-parse HEAD")}`.trim();
-
-		// Prints how many files are different / added.
-		const dirty = parseInt(`${exec("git status --porcelain 2>/dev/null| grep '^??' | wc -l")}`.trim(), 10);
-		if (dirty && dirty > 0) {
-			GIT_COMMIT += `:~${dirty}`;
-		}
-	}
-
-	if (!GIT_COMMIT || GIT_COMMIT === "") {
-		GIT_COMMIT = "(unknown)";
-	}
-
-	return GIT_COMMIT;
+	// Assumes no need to show revision, *should* be clean.
+	return "";
 };
 
 const get_version = () => {
 	const file = path.resolve("./package.json");
 	const data = fs.readFileSync(file, {encoding: "utf-8"}).trim();
+	const {version} = JSON.parse(data);
 
-	return JSON.parse(data)["version"];
+	if (NODE_ENV === "development") {
+		return version + "-dev";
+	}
+
+	return version;
 };
 
 module.exports = {
