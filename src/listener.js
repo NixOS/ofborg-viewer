@@ -36,7 +36,7 @@ class Listener {
 		this.client.connect(
 			AUTH, AUTH,
 			() => this.connected(),
-			() => bsod("Couldn't connect to websocket.\n\nMake sure content blockers (noscript, µblock) are not blocking websockets.")
+			(err) => this.handle_failure(err)
 		);
 	}
 
@@ -48,12 +48,24 @@ class Listener {
 	}
 
 	connected() {
+		this.succesfully_connected = true;
 		this.logger("Connected...", "ofborg");
 		this.logger(`Subscribing to "${this.key}"...`, "ofborg");
 		this.subscription = this.client.subscribe(
 			`/exchange/logs/${encodeURIComponent(this.key)}`,
 			(m) => this.on_message(JSON.parse(m.body), m)
 		);
+	}
+
+	handle_failure(err) {
+		console.error("STOMP error...");
+		console.error(err);
+		if (this.succesfully_connected) {
+			this.logger("Uhhh, we lost the websocket connection... refresh to fix this issue.", "stderr")
+		}
+		else {
+			bsod("Couldn't connect to websocket.\n\nMake sure content blockers (noscript, µblock) are not blocking websockets.")
+		}
 	}
 
 	/**
