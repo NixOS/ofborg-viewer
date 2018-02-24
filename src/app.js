@@ -128,7 +128,7 @@ class App {
 						.then((response) => response.text())
 						.then((txt) => {
 							const lines = txt.split("\n");
-							log.backlog(lines);
+							log.backlog(lines, log_url);
 							this.log(`→ added log for ${attempt_id}`, null, {tag: "ofborg"});
 						})
 					;
@@ -159,10 +159,13 @@ class App {
 			if (line_number > 1) {
 				// FIXME : Loop backlog fetching until all lines are found up to line_number.
 				log.backlog_loading();
-				Backlog.get(routing_key, attempt_id)
+				const log_url = Backlog.get_url(routing_key, attempt_id);
+
+				return fetch(log_url, {mode: "cors"})
+					.then((response) => response.text())
 					.then((txt) => {
 						const lines = txt.split("\n").slice(0, line_number - 1);
-						log.backlog(lines);
+						log.backlog(lines, log_url);
 					})
 					.catch((err) => {
 						log.backlog_error(err);

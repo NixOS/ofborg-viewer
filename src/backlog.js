@@ -1,8 +1,6 @@
 class Backlog {
-	static get(routing, id) {
-		return fetch(`${window.WELL_KNOWN}/${routing}/${id}`, {mode: "cors"})
-			.then((response) => response.text())
-		;
+	static get_url(routing, id) {
+		return `${window.WELL_KNOWN}/${routing}/${id}`;
 	}
 }
 

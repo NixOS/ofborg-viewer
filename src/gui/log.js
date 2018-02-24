@@ -2,6 +2,7 @@ import html from "../lib/html";
 import eventable from "../mixins/eventable";
 
 const SEP = " ╱ ";
+const MAX_LINES = 25000;
 
 /**
  * The line-oriented GUI for the application.
@@ -109,23 +110,39 @@ class Log {
 		this.sendEvent("unselect");
 	}
 
-	backlog(lines) {
+	backlog(lines, log_url = null) {
 		this.$backlog.classList.remove("loading");
 		// Empties backlog...
-		this.$backlog.innerText = `(Rendering backlog, ${lines.length} lines long...)**`;
-		let line_no = 1;
-		const fragment = document.createDocumentFragment();
-		lines.forEach((text) => {
-			const el = document.createElement("div");
-			el.title = `#${line_no}`;
-			line_no += 1;
-			el.innerText = text;
-			fragment.appendChild(el);
-		});
-		this.$backlog.innerText = `(Rendering backlog, ${lines.length} lines long...)`;
+		const start = Math.max(lines.length - MAX_LINES, 0);
+		const length = Math.min(lines.length, MAX_LINES);
+		let line_no = start + 1;
+		const fragment = document.createDocumentFragment(length);
+		this.$backlog.innerText = `(Rendering backlog, ${length} lines long...)**`;
+		lines.slice(start, lines.length)
+			.forEach((text) => {
+				const el = document.createElement("div");
+				el.title = `#${line_no}`;
+				line_no += 1;
+				el.innerText = text;
+				fragment.appendChild(el);
+			});
+		const $link = html(`<a class="truncated">Log has been truncated... (${length} lines shown out of ${lines.length}.)</a>`)[0];
+		if (log_url) {
+			$link.href = log_url;
+		}
+		if (length < lines.length) {
+			this.$backlog.innerText = `(Rendering backlog, ${length} lines out of ${lines.length}...)`;
+		}
+		else {
+			this.$backlog.innerText = `(Rendering backlog, ${length} lines long...)`;
+		}
+
 		// Delays appendChild to allow reflow for previous message.
 		window.setTimeout(() => {
 			this.$backlog.innerText = "";
+			if (length < lines.length) {
+				this.$backlog.appendChild($link);
+			}
 			this.$backlog.appendChild(fragment);
 		}, 10);
 		this.sendEvent("backlog", this);
