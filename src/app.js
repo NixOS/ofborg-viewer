@@ -121,14 +121,21 @@ class App {
 				const attempt = attempts[attempt_id];
 				const log = this.gui.addLog(attempt_id, attempt["metadata"]);
 				const {log_url} = attempt;
-				fetch(log_url, {mode: "cors"})
-					.then((response) => response.text())
-					.then((txt) => {
-						const lines = txt.split("\n");
-						log.backlog(lines);
-						this.log(`→ added log for ${attempt_id}`, null, {tag: "ofborg"});
-					})
-				;
+				// Loads backlog only when needed.
+				const handler = () => {
+					log.backlog_loading();
+					fetch(log_url, {mode: "cors"})
+						.then((response) => response.text())
+						.then((txt) => {
+							const lines = txt.split("\n");
+							log.backlog(lines);
+							this.log(`→ added log for ${attempt_id}`, null, {tag: "ofborg"});
+						})
+					;
+					// Removes self from events.
+					log.removeEventListener("select", handler);
+				};
+				log.addEventListener("select", handler);
 			}))
 			.then(() => callback())
 		;
