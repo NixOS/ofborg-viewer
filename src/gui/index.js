@@ -106,7 +106,7 @@ class Gui {
 	 * Marks the window as auto-scrollable or not when scrolling.
 	 */
 	watchScroll() {
-		const body = window.document.body;
+		const body = window.document.documentElement;
 		const scroll_bottom = Math.round(body.scrollTop) + Math.round(window.innerHeight);
 		const total_height = body.scrollHeight;
 
@@ -147,8 +147,8 @@ class Gui {
 	}
 
 	// Scroll as needed.
-		const body = window.document.body;
 	maybe_scroll() {
+		const body = window.document.documentElement;
 		if (this.following) {
 			body.scrollTop = body.scrollHeight;
 		}
