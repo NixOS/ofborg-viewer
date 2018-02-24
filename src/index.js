@@ -1,7 +1,5 @@
 import App from "./app";
-
-// Application-wide constant.
-window.WELL_KNOWN = "https://logs.nix.gsc.io/logs";
+import WELL_KNOWN from "./config";
 
 /**
  * Entry-point of the application.

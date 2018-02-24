@@ -3,6 +3,7 @@ import Listener from "./listener";
 import Gui from "./gui";
 import Backlog from "./backlog";
 import State from "./state";
+import {WELL_KNOWN} from "./config";
 
 const MAN = `
 ofborg-viewer(web)            ofborg web interface           ofborg-viewer(web)
@@ -114,7 +115,7 @@ class App {
 
 	load_logs(callback) {
 		this.log(`→ fetching existing attempts for ${this.key}`, null, {tag: "ofborg"});
-		return fetch(`${window.WELL_KNOWN}/${this.key}`, {mode: "cors"})
+		return fetch(`${WELL_KNOWN}/${this.key}`, {mode: "cors"})
 			.then((response) => response.json())
 			.then(({attempts}) => Object.keys(attempts).forEach((attempt_id) => {
 				this.log(`→ fetching log for ${attempt_id}`, null, {tag: "ofborg"});

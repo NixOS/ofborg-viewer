@@ -1,8 +1,8 @@
 import html from "../lib/html";
 import eventable from "../mixins/eventable";
+import {MAX_LINES} from "../config";
 
 const SEP = " ╱ ";
-const MAX_LINES = 25000;
 
 /**
  * The line-oriented GUI for the application.

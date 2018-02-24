@@ -1,8 +1,6 @@
 import bsod from "./lib/bsod";
 import Stomp from "@stomp/stompjs";
-
-const SOCK = "wss://events.nix.gsc.io:15671/ws";
-const AUTH = "logstream";
+import {SOCK, AUTH} from "./config";
 
 /**
  * Listener interface; subscribes to the queue and uses the given callback.
