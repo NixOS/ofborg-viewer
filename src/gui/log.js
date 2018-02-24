@@ -112,7 +112,7 @@ class Log {
 	backlog(lines) {
 		this.$backlog.classList.remove("loading");
 		// Empties backlog...
-		this.$backlog.innerText = `(Building DOM nodes, ${lines.length} lines long...)`;
+		this.$backlog.innerText = `(Rendering backlog, ${lines.length} lines long...)**`;
 		let line_no = 1;
 		const fragment = document.createDocumentFragment();
 		lines.forEach((text) => {
@@ -122,7 +122,7 @@ class Log {
 			el.innerText = text;
 			fragment.appendChild(el);
 		});
-		this.$backlog.innerText = `(Appending log to node, ${lines.length} lines long...)`;
+		this.$backlog.innerText = `(Rendering backlog, ${lines.length} lines long...)`;
 		// Delays appendChild to allow reflow for previous message.
 		window.setTimeout(() => {
 			this.$backlog.innerText = "";
