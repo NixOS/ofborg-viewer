@@ -1,6 +1,7 @@
 {
   "name": "ofborg-viewer-web",
   "version": "0.3.2",
+  "license": "MIT",
   "scripts": {
     "preinstall": "webpack -p --output-path website"
   },
