@@ -6,5 +6,4 @@ class Backlog {
 	}
 }
 
-
 export default Backlog;

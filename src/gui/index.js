@@ -1,6 +1,7 @@
 import bsod from "../lib/bsod";
 import html from "../lib/html";
 import Log from "./log";
+import eventable from "../mixins/eventable";
 
 /**
  * Name of the "internal" log, both for system messages
@@ -18,8 +19,13 @@ const INTERNAL_LOG = "-ofborg-";
  */
 class Gui {
 	constructor() {
+		eventable(this);
 		console.log("Creating log interface...."); // eslint-disable-line
 		this.setFollowing(true);
+
+		// To use as event listener targets.
+		this.handle_select = this.handle_select.bind(this);
+		this.maybe_scroll = this.maybe_scroll.bind(this);
 
 		// Registry of Log instances.
 		// ({`attempt_id`: instance})
@@ -60,14 +66,14 @@ class Gui {
 			log.select();
 		}
 
-		log.on_select = (...args) => this.handle_select(...args);
-		log.on_backlog = () => this.maybeScroll();
+		log.addEventListener("select", this.handle_select);
+		log.addEventListener("backlog", this.maybe_scroll)
 
 		return log;
 	}
 
 	handle_select(selected) {
-		this.maybeScroll();
+		this.maybe_scroll();
 		// Uses map as a cheap foreach.
 		Object.values(this.logs).map((l) => {
 			if (selected !== l) {
@@ -77,9 +83,7 @@ class Gui {
 			return null;
 		});
 
-		if (this.on_select) {
-			this.on_select(selected);
-		}
+		this.sendEvent("select", selected);
 	}
 
 	setFollowing(following) {
@@ -139,12 +143,12 @@ class Gui {
 			return;
 		}
 		this.logs[used_log].log(msg, tag, {title});
-		this.maybeScroll();
+		this.maybe_scroll();
 	}
 
 	// Scroll as needed.
-	maybeScroll() {
 		const body = window.document.body;
+	maybe_scroll() {
 		if (this.following) {
 			body.scrollTop = body.scrollHeight;
 		}

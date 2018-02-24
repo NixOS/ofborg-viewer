@@ -53,7 +53,7 @@ class Listener {
 		this.logger(`Subscribing to "${this.key}"...`, "ofborg");
 		this.subscription = this.client.subscribe(
 			`/exchange/logs/${encodeURIComponent(this.key)}`,
-			(m) => this.on_message(JSON.parse(m.body), m)
+			(m) => this.handle_message(JSON.parse(m.body), m)
 		);
 	}
 
@@ -71,7 +71,7 @@ class Listener {
 	/**
 	 * Handler for messages.
 	 */
-	on_message(msg, raw) {
+	handle_message(msg, raw) {
 		// Get the routing key, which will be used to fetch the backlogs.
 		const destination = raw.headers["destination"].split("/");
 		const routing = decodeURIComponent(destination[destination.length - 1]);

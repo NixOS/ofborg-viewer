@@ -1,4 +1,5 @@
 import html from "../lib/html";
+import eventable from "../mixins/eventable";
 
 const SEP = " ╱ ";
 
@@ -9,6 +10,7 @@ const SEP = " ╱ ";
  */
 class Log {
 	constructor(name, metadata = null, {label = null} = {}) {
+		eventable(this);
 		this.name = name;
 		this.$node = html(`<div class="logger"></div>`)[0];
 		this.$node.classList.add(`name__${name.replace(/[^a-zA-Z0-9]/g, "_")}`);
@@ -98,17 +100,13 @@ class Log {
 		this.$node.classList.add("selected");
 		this.$tab.classList.add("selected");
 		this.$tab.querySelectorAll("input")[0].checked = true;
-		if (this.on_select) {
-			this.on_select(this);
-		}
+		this.sendEvent("select", this);
 	}
 
 	unselect() {
 		this.$node.classList.remove("selected");
 		this.$tab.classList.remove("selected");
-		if (this.on_unselect) {
-			this.on_unselect();
-		}
+		this.sendEvent("unselect");
 	}
 
 	backlog(lines) {
@@ -122,9 +120,7 @@ class Log {
 			el.innerText = text;
 			this.$backlog.appendChild(el);
 		});
-		if (this.on_backlog) {
-			this.on_backlog();
-		}
+		this.sendEvent("backlog", this);
 	}
 
 	backlog_error(err) {

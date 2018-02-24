@@ -30,6 +30,9 @@ class App {
 	constructor() {
 		// Only "boot" the app when the DOM is ready.
 		ready(() => this.boot());
+
+		// To use as event listener targets.
+		this.handle_select = this.handle_select.bind(this);
 	}
 
 	/**
@@ -44,7 +47,7 @@ class App {
 		window.document.title = "Log viewer starting...";
 		this.gui = new Gui();
 
-		this.gui.on_select = (...args) => this.handle_select(...args);
+		this.gui.addEventListener("select", this.handle_select);
 
 		this.log("$ man ofborg-viewer", null, {tag: "ofborg"});
 		this.log(MAN, null, {tag: "man"});
