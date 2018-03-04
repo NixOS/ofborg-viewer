@@ -1,6 +1,6 @@
 import bsod from "./lib/bsod";
 import Stomp from "@stomp/stompjs";
-import {SOCK, AUTH} from "./config";
+import {SOCK, AUTH, SOCK_VHOST} from "./config";
 
 /**
  * Listener interface; subscribes to the queue and uses the given callback.
@@ -34,7 +34,8 @@ class Listener {
 		this.client.connect(
 			AUTH, AUTH,
 			() => this.connected(),
-			(err) => this.handle_failure(err)
+			(err) => this.handle_failure(err),
+			SOCK_VHOST
 		);
 	}
 
