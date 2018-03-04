@@ -1,7 +1,8 @@
 import bsod from "./lib/bsod";
 import Stomp from "@stomp/stompjs";
 
-const SOCK = "wss://events.nix.gsc.io:15671/ws";
+const SOCK = "wss://events.nix.ci:15671/ws";
+const VHOST = "ofborg";
 const AUTH = "logstream";
 
 /**
@@ -36,7 +37,8 @@ class Listener {
 		this.client.connect(
 			AUTH, AUTH,
 			() => this.connected(),
-			(err) => this.handle_failure(err)
+			(err) => this.handle_failure(err),
+			VHOST
 		);
 	}
 
