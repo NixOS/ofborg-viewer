@@ -1,4 +1,4 @@
-const infra = "nix.gsc.io";
+const infra = "nix.ci";
 
 const WELL_KNOWN = `https://logs.${infra}/logs`;
 const SOCK = `wss://events.${infra}:15671/ws`;
