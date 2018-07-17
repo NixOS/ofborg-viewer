@@ -148,7 +148,7 @@ class App {
 		const {output, attempt_id, line_number} = message;
 
 		// Probably a build-start message.
-		if (!output) {
+		if (!output && output !== "") {
 			this.gui.addLog(attempt_id, message);
 			return;
 		}
