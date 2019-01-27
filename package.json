@@ -3,7 +3,7 @@
   "version": "0.3.4",
   "license": "MIT",
   "scripts": {
-    "preinstall": "webpack -p --output-path website"
+    "preinstall": "if [[ $NODE_ENV == production ]]; then webpack -p --output-path website; else echo environment: $NODE_ENV; fi"
   },
   "devDependencies": {
     "buble": "^0.19",
