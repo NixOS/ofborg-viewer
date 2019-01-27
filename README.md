@@ -7,12 +7,8 @@ Development use
 ---------------
 
 ```
- $ bin/webpack
-```
-
-Or with watcher:
-
-```
+ $ nix-shell
+ $ yarn install
  $ bin/webpack-dev-server
 ```
 
