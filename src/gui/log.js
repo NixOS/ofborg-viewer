@@ -82,19 +82,22 @@ class Log {
 	 */
 	log(text, tag, {title}) {
 		const el = html(`<div></div>`)[0];
+		const anchor = html(`<a></a>`)[0];
 		if (tag) {
 			el.classList.add(tag);
 		}
+
 		if (title) {
 			el.title = title;
+			anchor.href = title;
 		}
 		// The replace regex allows more intelligent splitting.
 		// It will prefer splitting words, this way.
 		// .replace(/([,-=/])/g, "\u200B$1\u200B");
 		// It breaks search, until a solution is found we'll manage with crappy
 		// line breaks.
-		el.innerText = text;
-		this.$log.appendChild(el);
+		anchor.innerText = text;
+		this.$log.appendChild(el.appendChild(anchor));
 	}
 
 	select() {
