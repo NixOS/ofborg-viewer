@@ -1,4 +1,4 @@
-const infra = "nix.ci";
+const infra = "ofborg.org";
 
 const WELL_KNOWN = `https://logs.${infra}/logs`;
 const SOCK = `wss://devoted-teal-duck.rmq.cloudamqp.com/ws/`;
