@@ -1,15 +1,54 @@
-@color_borg: #2D8F34;
-@color_debug: #8F2D87;
-@color_man: #424775;
-@color_man_bg: #EDF3FF;
-@color_header_bg: #eeeeee;
-@color_header_fg: #005FFF;
-@color_tab_bg: #AFFFFF;
-@color_tab_selected: #ffffff;
-@color_tab_focus: #DC00B8;
-
 @line_height: 1.3rem;
 @header_height: @line_height;
+
+:root {
+	/* Used for background of the borg screen of death */
+	/* Used as the left border color for borg messages, like man or system information */
+	--color-borg: #2D8F34;
+	/* Used as the chat color for stompjs debug messages */
+	/* Used for visited links */
+	--color-debug: #8F2D87;
+	/* Used as the left border color for man messages */
+	--color-man: #424775;
+	/* Background color for man messages */
+	--color-man-bg: #EDF3FF;
+	/* Used as the background color for the header bar */
+	--color-header-bg: #eeeeee;
+	/* Used as the foreground color for the header bar */
+	/* Used for unclicked links. WHY? */
+	/* Used as background color for the selected header tab if it is not focused */
+	--color-header-fg: #005FFF;
+	/* Used as the background color for non-selected tabs */
+	/* Used as the background color for hovered, focused or active links */
+	--color-tab-bg: #AFFFFF;
+	/* Used as the text color for selected tabs (also if they are selected) */
+	--color-tab-selected: #ffffff;
+	/* Used as the background color of the focused tab */
+	--color-tab-focus: #DC00B8;
+
+	/* Used as the background color of the line that shows the builder (below the header) */
+	--color-builder-bg: #FFFAAF;
+	/* Used as the text color of the line that shows the builder (below the header) */
+	--color-builder-fg: #5270A3;
+
+	/* Used as the text color for ofborg and stomp messages */
+	--color-ofborg: #888;
+	/* Used as the color for the message that you require js */
+	--color-loading-js: #666;
+
+	/* Used as the background color of the body */
+	--color-background: #ffffff;
+	/* Used as the text color of the body */
+	--color-foreground: #000000;
+
+	/* used as the text color for the borg screen of death */
+	--color-white: #ffffff;
+	/* used as text color for error messages */
+	--color-error: #BA3300;
+
+	/* Used as the line color between log messages */
+	--color-line-divider: #eee;
+}
 
 #no-select {
 	-webkit-touch-callout: none;
@@ -22,8 +61,8 @@
 }
 
 body {
-	color: #000000;
-	background-color: #ffffff;
+	color: var(--color-foreground);
+	background-color: var(--color-background);
 	margin: 0;
 	padding: 0;
 	line-height: @line_height;
@@ -36,8 +75,8 @@ body {
 }
 
 .bsod {
-	background: @color_borg;
-	color: #ffffff;
+	background: var(--color-borg);
+	color: var(--color-white);
 	white-space: pre;
 }
 
@@ -46,7 +85,7 @@ body {
 		display: block;
 	}
 	em {
-		color: #666;
+		color: var(--color-loading-js);
 	}
 }
 
@@ -55,8 +94,8 @@ body {
 }
 
 .app > header {
-	background: @color_header_bg;
-	color: @color_header_fg;
+	background: var(--color-header-bg);
+	color: var(--color-header-fg);
 	height: @header_height;
 	z-index: 10;
 	position: sticky;
@@ -97,7 +136,7 @@ body {
 
 	ul > li {
 		display: inline-block;
-		background-color: @color_tab_bg;
+		background-color: var(--color-tab-bg);
 		margin-right: 1em;
 	}
 	li > * {
@@ -123,14 +162,14 @@ body {
 	}
 	li {
 		&:focus, &.__focus {
-			color: @color_tab_selected;
-			background-color: @color_tab_focus;
+			color: var(--color-tab-selected);
+			background-color: var(--color-tab-focus);
 		}
 	}
 
 	.selected {
-		color: @color_tab_selected;
-		background-color: @color_header_fg;
+		color: var(--color-tab-selected);
+		background-color: var(--color-header-fg);
 	}
 }
 
@@ -151,19 +190,19 @@ body {
 
 	// All lines.
 	& > * {
-		border-bottom: 0.05em solid #eee;
+		border-bottom: 0.05em solid var(--color-line-divider);
 		padding-left: @left_border;
 		min-height: @line_height;
 	}
 
 	a {
-		color: @color_header_fg;
+		color: var(--color-header-fg);
 		text-decoration: underline;
 		&:hover, &:focus, &:active {
-			background-color: @color_tab_bg;
+			background-color: var(--color-tab-bg);
 		}
 		&:visited {
-			color: @color_debug;
+			color: var(--color-debug);
 		}
 	}
 
@@ -173,22 +212,22 @@ body {
 		padding-left: @left_border/2;
 	}
 	.ofborg, .stomp {
-		color: #888;
+		color: var(--color-ofborg-fg);
 	}
 
 	// And their (tagged) colors.
 	.ofborg {
-		border-left-color: @color_borg;
+		border-left-color: var(--color-borg);
 	}
 	.stomp {
-		border-left-color: @color_debug;
+		border-left-color: var(--color-debug);
 	}
 	.stderr {
-		color: #BA3300;
+		color: var(--color-error);
 	}
 	.man {
-		border-left-color: @color_man;
-		background-color: @color_man_bg;
+		border-left-color: var(--color-man);
+		background-color: var(--color-man-bg);
 	}
 
 	// The previous bits of logs.
@@ -212,8 +251,8 @@ body {
 
 .logger .identity {
 	z-index: 1;
-	background: #FFFAAF;
-	color: #5270A3;
+	background: var(--color-builder-bg);
+	color: var(--color-builder-fg);
 	min-height: @line_height;
 	position: sticky;
 	top: @header_height;
