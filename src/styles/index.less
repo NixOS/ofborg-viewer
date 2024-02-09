@@ -2,52 +2,45 @@
 @header_height: @line_height;
 
 :root {
-	/* Used for background of the borg screen of death */
-	/* Used as the left border color for borg messages, like man or system information */
-	--color-borg: #2D8F34;
-	/* Used as the chat color for stompjs debug messages */
-	/* Used for visited links */
-	--color-debug: #8F2D87;
-	/* Used as the left border color for man messages */
-	--color-man: #424775;
+	/* Used as the background color of the body */
+	/* Used as the text color for the borg screen of death */
+	/* Used as the text color for selected tabs (also if they are selected) */
+	--color-bg: #ffffff;
 	/* Background color for man messages */
 	--color-man-bg: #EDF3FF;
 	/* Used as the background color for the header bar */
+	/* Used as the line color between log messages */
 	--color-header-bg: #eeeeee;
-	/* Used as the foreground color for the header bar */
-	/* Used for unclicked links. WHY? */
-	/* Used as background color for the selected header tab if it is not focused */
-	--color-header-fg: #005FFF;
-	/* Used as the background color for non-selected tabs */
-	/* Used as the background color for hovered, focused or active links */
-	--color-tab-bg: #AFFFFF;
-	/* Used as the text color for selected tabs (also if they are selected) */
-	--color-tab-selected: #ffffff;
-	/* Used as the background color of the focused tab */
-	--color-tab-focus: #DC00B8;
-
 	/* Used as the background color of the line that shows the builder (below the header) */
 	--color-builder-bg: #FFFAAF;
-	/* Used as the text color of the line that shows the builder (below the header) */
-	--color-builder-fg: #5270A3;
 
+	/* Used as background color for the selected header tab if it is not focused */
+	/* Used as the foreground color for the header bar */
+	/* Used for unclicked links. */
+	--color-tab-selected: #005FFF;
+	/* Used as the background color for non-selected tabs */
+	/* Used as the background color for hovered, focused or active links */
+	--color-tab-unselected: #AFFFFF;
+	/* Used as the background color of the focused tab */
+	--color-tab-focus: #DC00B8;
+	
+	/* Used as the default text color of the body */
+	--color-text: #000000;
 	/* Used as the text color for ofborg and stomp messages */
-	--color-ofborg: #888;
 	/* Used as the color for the message that you require js */
-	--color-loading-js: #666;
-
-	/* Used as the background color of the body */
-	--color-background: #ffffff;
-	/* Used as the text color of the body */
-	--color-foreground: #000000;
-
-	/* used as the text color for the borg screen of death */
-	--color-white: #ffffff;
-	/* used as text color for error messages */
+	/* Used as the text color of the line that shows the builder (below the header) */
+	--color-info: #00000080;
+	/* Used as text color for error messages */
 	--color-error: #BA3300;
 
-	/* Used as the line color between log messages */
-	--color-line-divider: #eee;
+	/* Used as the left border color for borg messages, like man or system information */
+	/* Used for background of the borg screen of death */
+	--color-borg: #2D8F34;
+	/* Used as the left border color for man messages */
+	--color-man: #424775;
+	/* Used as the text color for stompjs debug messages */
+	/* Used for visited links */
+	--color-debug: #8F2D87;
 }
 
 #no-select {
@@ -61,8 +54,8 @@
 }
 
 body {
-	color: var(--color-foreground);
-	background-color: var(--color-background);
+	color: var(--color-text);
+	background-color: var(--color-bg);
 	margin: 0;
 	padding: 0;
 	line-height: @line_height;
@@ -76,7 +69,7 @@ body {
 
 .bsod {
 	background: var(--color-borg);
-	color: var(--color-white);
+	color: var(--color-bg);
 	white-space: pre;
 }
 
@@ -85,7 +78,7 @@ body {
 		display: block;
 	}
 	em {
-		color: var(--color-loading-js);
+		color: var(--color-info);
 	}
 }
 
@@ -95,7 +88,7 @@ body {
 
 .app > header {
 	background: var(--color-header-bg);
-	color: var(--color-header-fg);
+	color: var(--color-tab-selected);
 	height: @header_height;
 	z-index: 10;
 	position: sticky;
@@ -136,7 +129,7 @@ body {
 
 	ul > li {
 		display: inline-block;
-		background-color: var(--color-tab-bg);
+		background-color: var(--color-tab-unselected);
 		margin-right: 1em;
 	}
 	li > * {
@@ -162,14 +155,14 @@ body {
 	}
 	li {
 		&:focus, &.__focus {
-			color: var(--color-tab-selected);
+			color: var(--color-bg);
 			background-color: var(--color-tab-focus);
 		}
 	}
 
 	.selected {
-		color: var(--color-tab-selected);
-		background-color: var(--color-header-fg);
+		color: var(--color-bg);
+		background-color: var(--color-tab-selected);
 	}
 }
 
@@ -190,16 +183,16 @@ body {
 
 	// All lines.
 	& > * {
-		border-bottom: 0.05em solid var(--color-line-divider);
+		border-bottom: 0.05em solid var(--color-header-bg);
 		padding-left: @left_border;
 		min-height: @line_height;
 	}
 
 	a {
-		color: var(--color-header-fg);
+		color: var(--color-tab-selected);
 		text-decoration: underline;
 		&:hover, &:focus, &:active {
-			background-color: var(--color-tab-bg);
+			background-color: var(--color-tab-unselected);
 		}
 		&:visited {
 			color: var(--color-debug);
@@ -212,7 +205,7 @@ body {
 		padding-left: @left_border/2;
 	}
 	.ofborg, .stomp {
-		color: var(--color-ofborg-fg);
+		color: var(--color-info-fg);
 	}
 
 	// And their (tagged) colors.
@@ -252,7 +245,7 @@ body {
 .logger .identity {
 	z-index: 1;
 	background: var(--color-builder-bg);
-	color: var(--color-builder-fg);
+	color: var(--color-info);
 	min-height: @line_height;
 	position: sticky;
 	top: @header_height;
