@@ -70,16 +70,6 @@
   }
 }
 
-#no-select {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  cursor: default;
-}
-
 body {
   color: var(--color-text);
   background-color: var(--color-bg);
@@ -118,23 +108,16 @@ body {
   left: 0;
   right: 0;
 
-  // Temp fix for overflowing tabs.
   overflow-x: hidden;
   overflow-y: hidden;
   white-space: nowrap;
 
   ul {
-    // The JS app will need to add appropriate text-indent when showing a tab.
-    //text-indent: -100px;
-    // Text-indent shouldn't then apply to the included elements.
     & > * {
       text-indent: initial;
     }
   }
 
-  // .__active is handled by the JS app.
-  // This unwraps the tabs bar.
-  // The JS app will need to text-indent appropriately to make the tab shown when !&.__active
   &:hover,
   &.__active {
     height: auto;
@@ -158,11 +141,14 @@ body {
   }
   li > * {
     position: relative;
-    #no-select();
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     cursor: pointer;
 
-    // Input is hidden, but through opacity and position.
-    // Otherwise, it won't be keyboard-interactable.
     input {
       opacity: 0;
       height: 1px;
@@ -197,16 +183,12 @@ body {
   }
 }
 
-// A logger pane.
 .logger-log {
   --left-border: 1em;
 
-  // Makes it mostly behave like pre.
-  // But with more wrapping.
   white-space: pre-wrap;
   word-wrap: break-word;
 
-  // All lines.
   & > * {
     border-bottom: 0.05em solid var(--color-header-bg);
     padding-left: var(--left-border);
@@ -226,7 +208,6 @@ body {
     }
   }
 
-  // Specially tagged messages.
   .ofborg,
   .stomp,
   .man {
@@ -238,7 +219,6 @@ body {
     color: var(--color-info);
   }
 
-  // And their (tagged) colors.
   .ofborg {
     border-left-color: var(--color-borg);
   }
@@ -253,9 +233,7 @@ body {
     background-color: var(--color-man-bg);
   }
 
-  // The "live" part of the logs.
   &.newlog {
-    // Adds sensible spacing at the bottom of the screen.
     padding-bottom: 0.7em;
   }
 

@@ -8,7 +8,7 @@ buildNpmPackage {
   ];
 
   src = ./.;
-  npmDepsHash = "sha256-0Pp1/7tIpzlSan8vTBo5tKcFJTNxiyDPTNFfbFh6OCc=";
+  npmDepsHash = "sha256-FOJlWrqguCENTz+2lfl2i533hzm6S1fmfe7zwvwhyiI=";
 
   # When building from git repo, add the revision to the source.
   # The build process will use it.
