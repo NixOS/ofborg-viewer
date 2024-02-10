@@ -1,14 +1,26 @@
-{ pkgs ? import <nixpkgs> {} }:
-with pkgs;
-stdenv.mkDerivation rec {
-  name = "ofborg-logviewer-env";
+{ buildNpmPackage, nodejs_20, gitMinimal }:
+buildNpmPackage {
+  version = (builtins.fromJSON (builtins.readFile ./package.json)).version;
+  pname = "ofborg-viewer";
+
   buildInputs = [
-    nodejs-6_x
-    yarn
+    nodejs_20
   ];
 
-  passthru = {
-    # Allows use of a tarball URL.
-    release = (import ./release.nix {inherit pkgs;});
-  };
+  src = ./.;
+  npmDepsHash = "sha256-FOJlWrqguCENTz+2lfl2i533hzm6S1fmfe7zwvwhyiI=";
+
+  # When building from git repo, add the revision to the source.
+  # The build process will use it.
+  preConfigure = ''
+    if [ -d .git ]; then
+      ${gitMinimal}/bin/git rev-parse HEAD > .git-revision
+    fi
+  '';
+
+  installPhase = ''
+    mkdir $out
+    npm run build
+    cp -rT dist $out
+  '';
 }
