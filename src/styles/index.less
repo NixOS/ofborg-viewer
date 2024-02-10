@@ -1,286 +1,301 @@
 :root {
-	/* Background color of the body */
-	/* Text color for the borg screen of death */
-	--color-bg: #ffffff;
-	/* Background color for man messages */
-	--color-man-bg: #EDF3FF;
-	/* Background color for the header bar */
-	/* Line color between log messages */
-	--color-header-bg: #eeeeee;
-	/* Background color of the line that shows the builder (below the header) */
-	--color-builder-bg: #FFFAAF;
-	/* Foreground color of the line that shows the builder (below the header) */
-	--color-builder: #5270A3;
+  /* Background color of the body */
+  /* Text color for the borg screen of death */
+  --color-bg: #ffffff;
+  /* Background color for man messages */
+  --color-man-bg: #edf3ff;
+  /* Background color for the header bar */
+  /* Line color between log messages */
+  --color-header-bg: #eeeeee;
+  /* Background color of the line that shows the builder (below the header) */
+  --color-builder-bg: #fffaaf;
+  /* Foreground color of the line that shows the builder (below the header) */
+  --color-builder: #5270a3;
 
-	/* Background color for the selected header tab if it is not focused */
-	--color-tab-selected: #005FFF;
-	/* Background color for non-selected tabs */
-	/* Background color for hovered, focused or active links */
-	--color-tab-unselected: #AFFFFF;
-	/* Background color of the focused tab */
-	--color-tab-focus: #DC00B8;
-	/* Text color for the header bar */
-	/* Text color of unclicked links. */
-	--color-tab-text: var(--color-tab-selected);
-	/* Text color for selected tabs (also if they are selected) */
-	--color-tab-selected-text: var(--color-bg);
-	
-	/* Default text color of the body */
-	--color-text: #000000;
-	/* Text color for ofborg and stomp messages */
-	/* Color of the message that you require js */
-	/* Text color of the line that shows the builder (below the header) */
-	--color-info: rgba(0, 0, 0, 0.5);
-	/* Text color for error messages */
-	--color-error: #BA3300;
+  /* Background color for the selected header tab if it is not focused */
+  --color-tab-selected: #005fff;
+  /* Background color for non-selected tabs */
+  /* Background color for hovered, focused or active links */
+  --color-tab-unselected: #afffff;
+  /* Background color of the focused tab */
+  --color-tab-focus: #dc00b8;
+  /* Text color for the header bar */
+  /* Text color of unclicked links. */
+  --color-tab-text: var(--color-tab-selected);
+  /* Text color for selected tabs (also if they are selected) */
+  --color-tab-selected-text: var(--color-bg);
 
-	/* Left border color for borg messages, like man or system information */
-	/* Background of the borg screen of death */
-	--color-borg: #2D8F34;
-	/* Left border color for man messages */
-	--color-man: #424775;
-	/* Text color for stompjs debug messages */
-	/* Text color for visited links */
-	--color-debug: #8F2D87;
+  /* Default text color of the body */
+  --color-text: #000000;
+  /* Text color for ofborg and stomp messages */
+  /* Color of the message that you require js */
+  /* Text color of the line that shows the builder (below the header) */
+  --color-info: rgba(0, 0, 0, 0.5);
+  /* Text color for error messages */
+  --color-error: #ba3300;
 
-	/* Line height */
-	--line-height: 1.3rem;
-	/* Header height */
-	--header-height: var(--line-height);
+  /* Left border color for borg messages, like man or system information */
+  /* Background of the borg screen of death */
+  --color-borg: #2d8f34;
+  /* Left border color for man messages */
+  --color-man: #424775;
+  /* Text color for stompjs debug messages */
+  /* Text color for visited links */
+  --color-debug: #8f2d87;
+
+  /* Line height */
+  --line-height: 1.3rem;
+  /* Header height */
+  --header-height: var(--line-height);
 }
 
 @media (prefers-color-scheme: dark) {
-	:root {
-		--color-bg: #1e1e1e;
-		--color-man-bg: #272727;
-		--color-header-bg: 	#303030; 
-		--color-builder-bg: #cd9309;
-		--color-builder:  rgba(0, 0, 0, 0.8);
-		--color-tab-selected: #444444;
-		--color-tab-unselected: #00000000;
-		--color-tab-focus: #4b4b4b;
-		--color-tab-text: var(--color-text);
-		--color-tab-selected-text: var(--color-text);
-		--color-text: #ffffff;
-		--color-info: rgba(255, 255, 255, 0.5);
-		--color-error: #ff7b63;
-		--color-borg: #26a269;
-		--color-man: #1a5fb4;
-		--color-debug: #613583;
-	}
+  :root {
+    --color-bg: #1e1e1e;
+    --color-man-bg: #272727;
+    --color-header-bg: #303030;
+    --color-builder-bg: #cd9309;
+    --color-builder: rgba(0, 0, 0, 0.8);
+    --color-tab-selected: #444444;
+    --color-tab-unselected: #00000000;
+    --color-tab-focus: #4b4b4b;
+    --color-tab-text: var(--color-text);
+    --color-tab-selected-text: var(--color-text);
+    --color-text: #ffffff;
+    --color-info: rgba(255, 255, 255, 0.5);
+    --color-error: #ff7b63;
+    --color-borg: #26a269;
+    --color-man: #1a5fb4;
+    --color-debug: #613583;
+  }
 }
 
 #no-select {
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	cursor: default;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
 }
 
 body {
-	color: var(--color-text);
-	background-color: var(--color-bg);
-	margin: 0;
-	padding: 0;
-	line-height: var(--line-height);
-	font-family:
-		"Go Mono",
-		"DejaVu Sans Mono",
-		"Lucida Console",
-		"monospace"
-	;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  margin: 0;
+  padding: 0;
+  line-height: var(--line-height);
+  font-family: "Go Mono", "DejaVu Sans Mono", "Lucida Console", "monospace";
 }
 
 .bsod {
-	background: var(--color-borg);
-	color: var(--color-bg);
-	white-space: pre;
+  background: var(--color-borg);
+  color: var(--color-bg);
+  white-space: pre;
 }
 
 .loading {
-	strong {
-		display: block;
-	}
-	em {
-		color: var(--color-info);
-	}
+  strong {
+    display: block;
+  }
+  em {
+    color: var(--color-info);
+  }
 }
 
 .app {
-	margin: 0;
+  margin: 0;
 }
 
 .app > header {
-	background: var(--color-header-bg);
-	color: var(--color-tab-text);
-	height: var(--header-height);
-	z-index: 10;
-	position: sticky;
-	top: 0;
-	left: 0;
-	right: 0;
+  background: var(--color-header-bg);
+  color: var(--color-tab-text);
+  height: var(--header-height);
+  z-index: 10;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
 
-	// Temp fix for overflowing tabs.
-	overflow-x: hidden;
-	overflow-y: hidden;
-	white-space: nowrap;
+  // Temp fix for overflowing tabs.
+  overflow-x: hidden;
+  overflow-y: hidden;
+  white-space: nowrap;
 
-	ul {
-		// The JS app will need to add appropriate text-indent when showing a tab.
-		//text-indent: -100px;
-		// Text-indent shouldn't then apply to the included elements.
-		& > * {
-			text-indent: initial;
-		}
-	}
+  ul {
+    // The JS app will need to add appropriate text-indent when showing a tab.
+    //text-indent: -100px;
+    // Text-indent shouldn't then apply to the included elements.
+    & > * {
+      text-indent: initial;
+    }
+  }
 
-	// .__active is handled by the JS app.
-	// This unwraps the tabs bar.
-	// The JS app will need to text-indent appropriately to make the tab shown when !&.__active
-	&:hover, &.__active {
-		height: auto;
-		white-space: normal;
-		ul {
-			text-indent: 0;
-		}
-	}
+  // .__active is handled by the JS app.
+  // This unwraps the tabs bar.
+  // The JS app will need to text-indent appropriately to make the tab shown when !&.__active
+  &:hover,
+  &.__active {
+    height: auto;
+    white-space: normal;
+    ul {
+      text-indent: 0;
+    }
+  }
 
-	ul, ul > li {
-		margin: 0;
-		padding: 0;
-		list-style-type: none;
-	}
+  ul,
+  ul > li {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
 
-	ul > li {
-		display: inline-block;
-		background-color: var(--color-tab-unselected);
-		margin-right: 1em;
-	}
-	li > * {
-		position: relative;
-		#no-select();
-		cursor: pointer;
+  ul > li {
+    display: inline-block;
+    background-color: var(--color-tab-unselected);
+    margin-right: 1em;
+  }
+  li > * {
+    position: relative;
+    #no-select();
+    cursor: pointer;
 
-		// Input is hidden, but through opacity and position.
-		// Otherwise, it won't be keyboard-interactable.
-		input {
-			opacity: 0;
-			height: 1px;
-			width: 1px;
-			position: absolute;
-			top: 0;
-			left: 0;
-		}
-		padding-left:  0.5em;
-		padding-right: 0.5em;
-		display: block;
-		color: inherit;
-		text-decoration: inherit;
-	}
-	li {
-		&:focus, &.__focus {
-			color: var(--color-tab-selected-text);
-			background-color: var(--color-tab-focus);
-		}
-	}
+    // Input is hidden, but through opacity and position.
+    // Otherwise, it won't be keyboard-interactable.
+    input {
+      opacity: 0;
+      height: 1px;
+      width: 1px;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    display: block;
+    color: inherit;
+    text-decoration: inherit;
+  }
+  li {
+    &:focus,
+    &.__focus {
+      color: var(--color-tab-selected-text);
+      background-color: var(--color-tab-focus);
+    }
+  }
 
-	.selected {
-		color: var(--color-tab-selected-text);
-		background-color: var(--color-tab-selected);
-	}
+  .selected {
+    color: var(--color-tab-selected-text);
+    background-color: var(--color-tab-selected);
+  }
 }
 
 .app > .logs {
-	& > :not(.selected) {
-		display: none;
-	}
+  & > :not(.selected) {
+    display: none;
+  }
 }
 
 // A logger pane.
 .logger-log {
-	--left-border: 1em;
+  --left-border: 1em;
 
-	// Makes it mostly behave like pre.
-	// But with more wrapping.
-	white-space: pre-wrap;
-	word-wrap: break-word;
+  // Makes it mostly behave like pre.
+  // But with more wrapping.
+  white-space: pre-wrap;
+  word-wrap: break-word;
 
-	// All lines.
-	& > * {
-		border-bottom: 0.05em solid var(--color-header-bg);
-		padding-left: var(--left-border);
-		min-height: var(--line-height);
-	}
+  // All lines.
+  & > * {
+    border-bottom: 0.05em solid var(--color-header-bg);
+    padding-left: var(--left-border);
+    min-height: var(--line-height);
+  }
 
-	a {
-		color: var(--color-tab-text);
-		text-decoration: underline;
-		&:hover, &:focus, &:active {
-			background-color: var(--color-tab-unselected);
-		}
-		&:visited {
-			color: var(--color-debug);
-		}
-	}
+  a {
+    color: var(--color-tab-text);
+    text-decoration: underline;
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: var(--color-tab-unselected);
+    }
+    &:visited {
+      color: var(--color-debug);
+    }
+  }
 
-	// Specially tagged messages.
-	.ofborg, .stomp, .man {
-		border-left: calc(var(--left-border) / 2) solid transparent;
-		padding-left: calc(var(--left-border) / 2);
-	}
-	.ofborg, .stomp {
-		color: var(--color-info);
-	}
+  // Specially tagged messages.
+  .ofborg,
+  .stomp,
+  .man {
+    border-left: calc(var(--left-border) / 2) solid transparent;
+    padding-left: calc(var(--left-border) / 2);
+  }
+  .ofborg,
+  .stomp {
+    color: var(--color-info);
+  }
 
-	// And their (tagged) colors.
-	.ofborg {
-		border-left-color: var(--color-borg);
-	}
-	.stomp {
-		border-left-color: var(--color-debug);
-	}
-	.stderr {
-		color: var(--color-error);
-	}
-	.man {
-		border-left-color: var(--color-man);
-		background-color: var(--color-man-bg);
-	}
+  // And their (tagged) colors.
+  .ofborg {
+    border-left-color: var(--color-borg);
+  }
+  .stomp {
+    border-left-color: var(--color-debug);
+  }
+  .stderr {
+    color: var(--color-error);
+  }
+  .man {
+    border-left-color: var(--color-man);
+    background-color: var(--color-man-bg);
+  }
 
-	// The "live" part of the logs.
-	&.newlog {
-		// Adds sensible spacing at the bottom of the screen.
-		padding-bottom: 0.7em;
-	}
+  // The "live" part of the logs.
+  &.newlog {
+    // Adds sensible spacing at the bottom of the screen.
+    padding-bottom: 0.7em;
+  }
 
-	a.truncated {
-		display: block;
-		animation-name: flash;
-		animation-duration: 0.8s;
-		animation-fill-mode: both;
-		animation-timing-function: ease-in-out;
-	}
+  a.truncated {
+    display: block;
+    animation-name: flash;
+    animation-duration: 0.8s;
+    animation-fill-mode: both;
+    animation-timing-function: ease-in-out;
+  }
 }
 
 .logger .identity {
-	z-index: 1;
-	background: var(--color-builder-bg);
-	color: var(--color-builder);
-	min-height: var(--line-height);
-	position: sticky;
-	top: var(--header-height);
-	left: 0;
-	right: 0;
+  z-index: 1;
+  background: var(--color-builder-bg);
+  color: var(--color-builder);
+  min-height: var(--line-height);
+  position: sticky;
+  top: var(--header-height);
+  left: 0;
+  right: 0;
 }
 
 @keyframes flash {
-	0%    {opacity: 0.1;}
-	16.6% {opacity: 1;}
-	33.3% {opacity: 0.1;}
-	50%   {opacity: 1;}
-	66.6% {opacity: 0.1;}
-	100%  {opacity: 1;}
+  0% {
+    opacity: 0.1;
+  }
+  16.6% {
+    opacity: 1;
+  }
+  33.3% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 1;
+  }
+  66.6% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 1;
+  }
 }
