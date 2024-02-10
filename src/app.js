@@ -1,4 +1,3 @@
-import ready from "./lib/ready";
 import Listener from "./listener";
 import Gui from "./gui";
 import Backlog from "./backlog";
