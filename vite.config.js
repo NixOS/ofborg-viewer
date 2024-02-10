@@ -31,6 +31,7 @@ export const get_version = () => {
 /** @type {import('vite').UserConfig} */
 export default {
   root: "src",
+  base: "./",
   build: {
     outDir: "../dist",
     emptyOutDir: true,
