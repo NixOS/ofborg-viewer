@@ -29,11 +29,11 @@ DESCRIPTION
  */
 class App {
 	constructor() {
-		// Only "boot" the app when the DOM is ready.
-		ready(() => this.boot());
-
 		// To use as event listener targets.
 		this.handle_select = this.handle_select.bind(this);
+		
+		// Only "boot" the app when the DOM is ready.
+		this.boot();
 	}
 
 	/**
@@ -47,6 +47,7 @@ class App {
 	boot() {
 		window.document.title = "Log viewer starting...";
 		this.gui = new Gui();
+		this.state = new State();
 
 		this.gui.addEventListener("select", this.handle_select);
 
@@ -58,7 +59,6 @@ class App {
 		this.log("→ logger starting", null, {tag: "ofborg"});
 		window.document.title = "Log viewer started...";
 
-		this.state = new State();
 		this.state.on_state_change = (s) => this.handle_state_change(s);
 		this.handle_state_change(this.state.params);
 	}

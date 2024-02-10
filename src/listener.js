@@ -1,5 +1,5 @@
 import bsod from "./lib/bsod";
-import Stomp from "@stomp/stompjs";
+import {Client} from "@stomp/stompjs";
 import {SOCK, AUTH, SOCK_VHOST} from "./config";
 
 /**
@@ -12,9 +12,25 @@ class Listener {
 		this.fn = fn;
 		this.logger = logger;
 		this.logger("Socket created...", "ofborg");
-		this.client = Stomp.client(SOCK);
+		this.client = new Client({
+			brokerURL: SOCK,
+			connectHeaders: {
+				login: AUTH,
+				passcode: AUTH,
+				host: SOCK_VHOST,
+			},
+			onStompError: (err) => {
+				this.handle_failure(err)
+			},
+			onWebSocketError: (err) => {
+				this.handle_failure(err)
+			},
+			onConnect: () => {
+				this.connected()
+			},
+		  });
+
 		this.client.debug = (str) => this.debug_callback(str);
-		this.connect();
 	}
 
 	/**
@@ -28,15 +44,6 @@ class Listener {
 			/* eslint-enable */
 			this.logger(cleaned, "stomp");
 		}
-	}
-
-	connect() {
-		this.client.connect(
-			AUTH, AUTH,
-			() => this.connected(),
-			(err) => this.handle_failure(err),
-			SOCK_VHOST
-		);
 	}
 
 	disconnect() {

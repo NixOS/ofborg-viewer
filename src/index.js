@@ -1,5 +1,5 @@
 import App from "./app";
-import WELL_KNOWN from "./config";
+import ready from "./lib/ready";
 
 /**
  * Entry-point of the application.
@@ -36,5 +36,9 @@ import WELL_KNOWN from "./config";
 	}
 }
 
+ready(() => {
+	window.APP = new App();
+});
+
 // Starts the app.
-window.APP = new App();
+
