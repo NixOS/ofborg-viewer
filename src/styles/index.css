@@ -1,47 +1,47 @@
 :root {
   /* Background color of the body */
   /* Text color for the borg screen of death */
-  --color-bg: #ffffff;
+  --color-bg: #1e1e1e;
   /* Background color for man messages */
-  --color-man-bg: #edf3ff;
+  --color-man-bg: #272727;
   /* Background color for the header bar */
   /* Line color between log messages */
-  --color-header-bg: #eeeeee;
+  --color-header-bg: #303030;
   /* Background color of the line that shows the builder (below the header) */
-  --color-builder-bg: #fffaaf;
+  --color-builder-bg: #cd9309;
   /* Foreground color of the line that shows the builder (below the header) */
-  --color-builder: #5270a3;
+  --color-builder: rgba(0, 0, 0, 0.8);
 
   /* Background color for the selected header tab if it is not focused */
-  --color-tab-selected: #005fff;
+  --color-tab-selected: #444444;
   /* Background color for non-selected tabs */
   /* Background color for hovered, focused or active links */
-  --color-tab-unselected: #afffff;
+  --color-tab-unselected: #00000000;
   /* Background color of the focused tab */
-  --color-tab-focus: #dc00b8;
+  --color-tab-focus: #4b4b4b;
   /* Text color for the header bar */
   /* Text color of unclicked links. */
-  --color-tab-text: var(--color-tab-selected);
+  --color-tab-text: var(--color-text);
   /* Text color for selected tabs (also if they are selected) */
-  --color-tab-selected-text: var(--color-bg);
+  --color-tab-selected-text: var(--color-text);
 
   /* Default text color of the body */
-  --color-text: #000000;
+  --color-text: #ffffff;
   /* Text color for ofborg and stomp messages */
   /* Color of the message that you require js */
   /* Text color of the line that shows the builder (below the header) */
-  --color-info: rgba(0, 0, 0, 0.5);
+  --color-info: rgba(255, 255, 255, 0.5);
   /* Text color for error messages */
-  --color-error: #ba3300;
+  --color-error: #ff7b63;
 
   /* Left border color for borg messages, like man or system information */
   /* Background of the borg screen of death */
-  --color-borg: #2d8f34;
+  --color-borg: #26a269;
   /* Left border color for man messages */
-  --color-man: #424775;
+  --color-man: #1a5fb4;
   /* Text color for stompjs debug messages */
   /* Text color for visited links */
-  --color-debug: #8f2d87;
+  --color-debug: #613583;
 
   /* Line height */
   --line-height: 1.3rem;
@@ -49,24 +49,24 @@
   --header-height: var(--line-height);
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
-    --color-bg: #1e1e1e;
-    --color-man-bg: #272727;
-    --color-header-bg: #303030;
-    --color-builder-bg: #cd9309;
-    --color-builder: rgba(0, 0, 0, 0.8);
-    --color-tab-selected: #444444;
-    --color-tab-unselected: #00000000;
-    --color-tab-focus: #4b4b4b;
-    --color-tab-text: var(--color-text);
-    --color-tab-selected-text: var(--color-text);
-    --color-text: #ffffff;
-    --color-info: rgba(255, 255, 255, 0.5);
-    --color-error: #ff7b63;
-    --color-borg: #26a269;
-    --color-man: #1a5fb4;
-    --color-debug: #613583;
+    --color-bg: #ffffff;
+    --color-man-bg: #edf3ff;
+    --color-header-bg: #eeeeee;
+    --color-builder-bg: #fffaaf;
+    --color-builder: #5270a3;
+    --color-tab-selected: #005fff;
+    --color-tab-unselected: #afffff;
+    --color-tab-focus: #dc00b8;
+    --color-tab-text: var(--color-tab-selected);
+    --color-tab-selected-text: var(--color-bg);
+    --color-text: #000000;
+    --color-info: rgba(0, 0, 0, 0.5);
+    --color-error: #ba3300;
+    --color-borg: #2d8f34;
+    --color-man: #424775;
+    --color-debug: #8f2d87;
   }
 }
 
